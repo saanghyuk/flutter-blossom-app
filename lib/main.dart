@@ -1,6 +1,6 @@
-import 'package:blossom/myRoute.dart';
-import 'package:flutter/material.dart';
+import 'package:blossom/project/myRoute.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
-  runApp(MyRoute());
+  runApp(ProjectRoute());
 }
