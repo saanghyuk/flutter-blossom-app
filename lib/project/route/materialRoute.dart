@@ -8,12 +8,13 @@ class ProjectMaterialRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowMaterialGrid: false,
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: (RouteSettings route){
 
         if(route.name == MainPage.path){
           return MaterialPageRoute(settings: MainPage.settings, builder: MainPage.builder);
         }
-
         return MaterialPageRoute(
           settings: SplashPage.settings,
           builder: SplashPage.builder,

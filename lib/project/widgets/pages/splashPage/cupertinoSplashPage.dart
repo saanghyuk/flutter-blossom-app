@@ -6,6 +6,8 @@ class CupertinoSplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(child: Text(this.txt));
+    return CupertinoPageScaffold(
+        child: Center(child: Text(this.txt))
+    );
   }
 }
