@@ -8,9 +8,7 @@ class ProjectRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   if(Platform.isIOS) return ProjectCupertinoRoute();
-   return ProjectMaterialRoute();
+    if(Platform.isIOS) return ProjectCupertinoRoute();
+    return ProjectMaterialRoute();
   }
 }
-
-

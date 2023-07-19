@@ -1,4 +1,4 @@
-import 'package:blossom/pages/home.dart';
+import 'package:blossom/legacy/pages/home.dart';
 import 'package:flutter/material.dart';
 
 

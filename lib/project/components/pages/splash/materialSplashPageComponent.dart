@@ -1,4 +1,3 @@
-
 import 'package:blossom/project/widgets/pages/splashPage/materialSplashPage.dart';
 import 'package:flutter/widgets.dart';
 

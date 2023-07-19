@@ -1,8 +1,6 @@
-import 'package:blossom/project/pages/mainPage.dart';
+import 'package:blossom/project/pages/mainpage/mainPage.dart';
+import 'package:blossom/project/pages/splashpage/splashPage.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/splashPage/splashPage.dart';
-
 
 class ProjectMaterialRoute extends StatelessWidget {
   const ProjectMaterialRoute({Key? key}) : super(key: key);
@@ -17,8 +15,8 @@ class ProjectMaterialRoute extends StatelessWidget {
         }
 
         return MaterialPageRoute(
-            settings: SplashPage.settings,
-            builder:  SplashPage.builder,
+          settings: SplashPage.settings,
+          builder: SplashPage.builder,
         );
       },
     );

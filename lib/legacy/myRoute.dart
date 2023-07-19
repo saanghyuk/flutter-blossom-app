@@ -1,5 +1,5 @@
-import 'package:blossom/pages/home.dart';
-import 'package:blossom/pages/splash.dart';
+import 'package:blossom/legacy/pages/home.dart';
+import 'package:blossom/legacy/pages/splash.dart';
 import 'package:flutter/material.dart';
 
 

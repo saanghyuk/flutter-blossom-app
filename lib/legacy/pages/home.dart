@@ -1,4 +1,4 @@
-import 'package:blossom/Components/iconsTextButton.dart';
+import 'package:blossom/legacy/Components/iconsTextButton.dart';
 import 'package:flutter/material.dart';
 import '../Components/uploadBar.dart';
 
