@@ -5,14 +5,15 @@ class FeedInput extends StatelessWidget {
   final String title;
   final bool _isDefault;
   final int? _buttonCount;
+  final Future<void> Function(int)? _inkWellOnTap;
   final Widget Function(BuildContext, int)? _builder;
-  const FeedInput({Key? key, required this.title})
-      : _isDefault= true, _builder = null, _buttonCount = null, super(key: key);
+  const FeedInput({Key? key, required this.title, required Future<void> Function(int) inkWellOnTap})
+      : _inkWellOnTap = inkWellOnTap, _isDefault= true, _builder = null, _buttonCount = null, super(key: key);
   const FeedInput.builder({
     required this.title,
     required int buttonCount,
     required Widget Function(BuildContext, int) builder})
-      : _isDefault = false, _builder = builder, _buttonCount = buttonCount;
+      : _isDefault = false, _builder = builder, _buttonCount = buttonCount, _inkWellOnTap = null;
 
 
 
@@ -59,9 +60,15 @@ class FeedInput extends StatelessWidget {
         this._buttonCount!, (int index) => index).map<Widget>(
             (int index) => this._builder!(context, index)).toList();
     return [
-      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt)),
-      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt)),
-      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt)),
+      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt, onTap: () async {
+        this._inkWellOnTap!(0);
+      })),
+      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt, onTap: () async {
+        this._inkWellOnTap!(1);
+      })),
+      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt, onTap: () async {
+        this._inkWellOnTap!(2);
+      }))
     ];
 
   }
