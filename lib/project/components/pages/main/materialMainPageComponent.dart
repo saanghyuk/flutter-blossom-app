@@ -1,4 +1,5 @@
-import 'package:blossom/project/widgets/feedInput.dart';
+import 'package:blossom/project/widgets/content/feedCard/feedCard.dart';
+import 'package:blossom/project/widgets/content/feedInput/materialFeedInput.dart';
 import 'package:blossom/project/widgets/pages/mainPage/materialMainPage.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
@@ -8,7 +9,8 @@ class MaterialMainPageComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialMainPage(inputWidget: FeedInput(
+    return MaterialMainPage(
+      inputWidget: FeedInput(
       title: "Hello!",
       inkWellOnTap: (int index) async {
         if(index == 0){
@@ -19,7 +21,10 @@ class MaterialMainPageComponent extends StatelessWidget {
           print("2 clicked");
         }
       },
-    )
+      ),
+      feedCard: [
+        FeedCard(),
+      ],
     );
   }
 }
