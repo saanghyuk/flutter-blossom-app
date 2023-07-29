@@ -8,18 +8,18 @@ class MaterialMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
-      body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              this.inputWidget,
-              SizedBox(height: 20.0),
-              ...this.feedCard
-            ],
-          )
+        backgroundColor: Colors.grey.shade300,
+        body: SafeArea(
+            child: Container(
+                child: Column(
+                  children: [
+                    this.inputWidget,
+                    SizedBox(height: 20.0),
+                    ...this.feedCard
+                  ],
+                )
+            )
         )
-      )
     );
   }
 }

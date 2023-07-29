@@ -14,7 +14,7 @@ class FeedInput extends StatelessWidget {
     required this.title,
     required int buttonCount,
     required Widget Function(BuildContext, int) builder
-    }) : _isDefault = false, _builder = builder, _buttonCount = buttonCount, _inkWellOnTap = null;
+  }) : _isDefault = false, _builder = builder, _buttonCount = buttonCount, _inkWellOnTap = null;
 
 
 
@@ -33,18 +33,18 @@ class FeedInput extends StatelessWidget {
             Container(
                 child: Text(
                   // this.title,
-                  this.title,
-                  overflow: TextOverflow.ellipsis,
-                  style: _textTxtStyle
+                    this.title,
+                    overflow: TextOverflow.ellipsis,
+                    style: _textTxtStyle
                 )
             ),
             Container(
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(left: 10.0),
-                ),
-              )
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 10.0),
+                  ),
+                )
             ),
             Container(
                 child: Row(
@@ -70,15 +70,15 @@ class FeedInput extends StatelessWidget {
     return buttonList.map((Map<String, dynamic> e) {
       final int index = buttonList.indexOf(e);
       return Expanded(
-        child: FeedButton(
-            title: e["title"],
-            icon: e["icon"],
-            onTap: this._inkWellOnTap == null ? null : () async {
-              await this._inkWellOnTap!(index);
-            }
-        )
+          child: FeedButton(
+              title: e["title"],
+              icon: e["icon"],
+              onTap: this._inkWellOnTap == null ? null : () async {
+                await this._inkWellOnTap!(index);
+              }
+          )
       );
-      }
+    }
     ).toList();
   }
 }
@@ -102,13 +102,13 @@ class FeedButton extends StatelessWidget {
     return InkWell(
       onTap: this.onTap,
       child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(this.icon),
-            Expanded(child: Text(this.title, overflow: TextOverflow.ellipsis))
-          ],
-        )
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(this.icon),
+              Expanded(child: Text(this.title, overflow: TextOverflow.ellipsis))
+            ],
+          )
       ),
     );
   }
