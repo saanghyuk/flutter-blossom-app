@@ -1,20 +1,18 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class FeedInput extends StatelessWidget {
   final String title;
   final bool _isDefault;
   final int? _buttonCount;
-  final FutureOr<void> Function(int)? _inkWellOnTap;
   final Widget Function(BuildContext, int)? _builder;
-  const FeedInput({Key? key, required this.title, Future<void> Function(int)? inkWellOnTap})
-      : _inkWellOnTap = inkWellOnTap, _isDefault= true, _builder = null, _buttonCount = null, super(key: key);
+  const FeedInput({Key? key, required this.title})
+      : _isDefault= true, _builder = null, _buttonCount = null, super(key: key);
   const FeedInput.builder({
     required this.title,
     required int buttonCount,
-    required Widget Function(BuildContext, int) builder
-  }) : _isDefault = false, _builder = builder, _buttonCount = buttonCount, _inkWellOnTap = null;
+    required Widget Function(BuildContext, int) builder})
+      : _isDefault = false, _builder = builder, _buttonCount = buttonCount;
 
 
 
@@ -27,14 +25,12 @@ class FeedInput extends StatelessWidget {
     );
 
     return Container(
-        color: Colors.white,
         child: Column(
           children: [
             Container(
                 child: Text(
                   // this.title,
                     this.title,
-                    overflow: TextOverflow.ellipsis,
                     style: _textTxtStyle
                 )
             ),
@@ -62,24 +58,12 @@ class FeedInput extends StatelessWidget {
     if(!this._isDefault) return List<int>.generate(
         this._buttonCount!, (int index) => index).map<Widget>(
             (int index) => this._builder!(context, index)).toList();
-    List<Map<String, dynamic>> buttonList = [
-      {"title": "Imageadafasdjlfkasjdflkasjdklfjals;kfjaslk;dfjl;aksdfj", "icon": Icons.camera_alt},
-      {"title": "Image", "icon": Icons.camera_alt},
-      {"title": "Image", "icon": Icons.camera_alt}
+    return [
+      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt)),
+      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt)),
+      Expanded(child: FeedButton(title: "Image", icon: Icons.camera_alt)),
     ];
-    return buttonList.map((Map<String, dynamic> e) {
-      final int index = buttonList.indexOf(e);
-      return Expanded(
-          child: FeedButton(
-              title: e["title"],
-              icon: e["icon"],
-              onTap: this._inkWellOnTap == null ? null : () async {
-                await this._inkWellOnTap!(index);
-              }
-          )
-      );
-    }
-    ).toList();
+
   }
 }
 
@@ -106,7 +90,7 @@ class FeedButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(this.icon),
-              Expanded(child: Text(this.title, overflow: TextOverflow.ellipsis))
+              Text(this.title)
             ],
           )
       ),
