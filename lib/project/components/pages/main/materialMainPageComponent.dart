@@ -1,3 +1,4 @@
+import 'package:blossom/project/components/widgets/feedInputComponent.dart';
 import 'package:blossom/project/widgets/content/feedCard/feedCard.dart';
 import 'package:blossom/project/widgets/content/feedCard/materialFeedCard.dart';
 import 'package:blossom/project/widgets/content/feedInput/materialFeedInput.dart';
@@ -12,18 +13,7 @@ class MaterialMainPageComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialMainPage.builder(
-      inputWidget: FeedInput(
-        title: "Hello!",
-        inkWellOnTap: (int index) async {
-          if(index == 0){
-            print("0 clicked");
-          }else if(index == 1){
-            print("1 clicked");
-          }else{
-            print("2 clicked");
-          }
-        },
-      ),
+      inputWidget: FeedInputComponent(),
       feedCardBuilder: (BuildContext context, int index) => FeedCard(onTap: (FeedCardOnTapType type) { print(type); }),
       feedCardItemCount: 3,
       feedCardListScrollController : this.scrollController,

@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:blossom/project/components/pages/main/cupertinoMainPageComponent.dart';
 import 'package:blossom/project/components/pages/main/materialMainPageComponent.dart';
+import 'package:blossom/project/providers/mainPageProvider.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -18,6 +20,21 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final ScrollController _scrollController = ScrollController();
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    final _provider = this.context.read<MainPageProvider>();
+    this._scrollController.addListener(() {
+      // 값을 사용할게 아니라서 notifylistner에서 업데이트 할 필요가 없다.
+      // 단순히 그 함수를 호출만 할꺼니깐 괜찮다.
+      if(!this._scrollController.hasClients) return;
+      _provider.event(
+        this._scrollController.position.pixels
+      );
+    });
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {

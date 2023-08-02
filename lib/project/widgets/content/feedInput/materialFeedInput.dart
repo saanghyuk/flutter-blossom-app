@@ -2,20 +2,44 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class FeedInput extends StatelessWidget {
+class FeedInput extends StatefulWidget {
+  final bool? _ignore;
+  final double? _opacity;
+  final double? _height;
   final String title;
+  final void Function(Size)? _renderDone;
   final bool _isDefault;
   final int? _buttonCount;
   final FutureOr<void> Function(int)? _inkWellOnTap;
   final Widget Function(BuildContext, int)? _builder;
   const FeedInput({Key? key, required this.title, Future<void> Function(int)? inkWellOnTap})
-      : _inkWellOnTap = inkWellOnTap, _isDefault= true, _builder = null, _buttonCount = null, super(key: key);
+      :_renderDone = null, _ignore = null, _opacity = null, _height= null, _inkWellOnTap = inkWellOnTap, _isDefault= true, _builder = null, _buttonCount = null, super(key: key);
   const FeedInput.builder({
     required this.title,
+    required void Function(Size)? renderDone,
     required int buttonCount,
-    required Widget Function(BuildContext, int) builder
-  }) : _isDefault = false, _builder = builder, _buttonCount = buttonCount, _inkWellOnTap = null;
+    required Widget Function(BuildContext, int) builder, required double? height, required double opacity, required bool ignore,
+  }) : _renderDone = renderDone, _ignore = ignore, _height = height, _opacity = opacity, _isDefault = false, _builder = builder, _buttonCount = buttonCount, _inkWellOnTap = null;
 
+
+
+  @override
+  State<FeedInput> createState() => _FeedInputState();
+}
+
+class _FeedInputState extends State<FeedInput> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        final RenderBox? _box = this.context.findRenderObject() as RenderBox;
+        if(_box == null) throw "_BOX ERR"; // TODO: 개발단계에서만 사용하고 변경
+        if(this.widget._renderDone == null) return;
+        this.widget._renderDone!(_box.size);
+    });
+    super.initState();
+  }
 
 
   @override
@@ -27,11 +51,11 @@ class FeedInput extends StatelessWidget {
     );
 
     return IgnorePointer(
-      ignoring: false,
+      ignoring: this.widget._ignore ?? false,
       child: Opacity(
-        opacity: 1.0,
+        opacity: this.widget._opacity ?? 1.0,
         child: Container(
-            height: null,
+            height: (this.widget._ignore ?? false) ? this.widget._height : null,
             color: Colors.white,
             child: SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
@@ -40,7 +64,7 @@ class FeedInput extends StatelessWidget {
                   Container(
                       child: Text(
                         // this.title,
-                          this.title,
+                          this.widget.title,
                           overflow: TextOverflow.ellipsis,
                           style: _textTxtStyle
                       )
@@ -69,9 +93,9 @@ class FeedInput extends StatelessWidget {
   }
 
   List<Widget> _btns(BuildContext context){
-    if(!this._isDefault) return List<int>.generate(
-        this._buttonCount!, (int index) => index).map<Widget>(
-            (int index) => this._builder!(context, index)).toList();
+    if(!this.widget._isDefault) return List<int>.generate(
+        this.widget._buttonCount!, (int index) => index).map<Widget>(
+            (int index) => this.widget._builder!(context, index)).toList();
     List<Map<String, dynamic>> buttonList = [
       {"title": "askldfjal;ksdjf;lkasjdf;lkajsd;lkfjas;lkdfjas;lkdfj;alk", "icon": Icons.camera_alt},
       {"title": "Image", "icon": Icons.camera_alt},
@@ -83,8 +107,8 @@ class FeedInput extends StatelessWidget {
           child: FeedButton(
               title: e["title"],
               icon: e["icon"],
-              onTap: this._inkWellOnTap == null ? null : () async {
-                await this._inkWellOnTap!(index);
+              onTap: this.widget._inkWellOnTap == null ? null : () async {
+                await this.widget._inkWellOnTap!(index);
               }
           )
       );
@@ -98,7 +122,7 @@ class FeedInput extends StatelessWidget {
 class FeedButton extends StatelessWidget {
   final String title;
   final IconData icon;
-  final Future<void> Function()? onTap;
+  final FutureOr<void> Function()? onTap;
 
   const FeedButton({
     Key? key,
