@@ -17,7 +17,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -29,11 +28,9 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(Platform.isIOS) return CupertinoMainPageComponent(
-        // scrollController: this._scrollController
-    );
+    if(Platform.isIOS) return CupertinoMainPageComponent();
     return MaterialMainPageComponent(
-      scrollController: this._scrollController
+      scrollController : this._scrollController
     );
   }
 }

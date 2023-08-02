@@ -7,35 +7,35 @@ class MaterialMainPage extends StatelessWidget {
   final Widget Function(BuildContext, int)? _feedCardBuilder;
   final bool _isBuilder;
   final ScrollController feedCardListScrollController;
-
-
-  const MaterialMainPage({super.key, required this.inputWidget, required  List<Widget> feedCard, required this.feedCardListScrollController})
-      : _feedCardItemCount = null, _isBuilder = false, _feedCard = feedCard, _feedCardBuilder = null;
+  const MaterialMainPage({Key? key, required this.inputWidget, required List<Widget> feedCard, required this.feedCardListScrollController})
+      : _feedCardItemCount = null, _isBuilder = false, _feedCard = feedCard, _feedCardBuilder= null, super(key: key);
 
   const MaterialMainPage.builder({
-      super.key,
-      required this.inputWidget,
-      required Widget Function(BuildContext context, int index) feedCardBuilder,
-      required int feedCardItemCount, required this.feedCardListScrollController,
-    }) : _feedCardItemCount = feedCardItemCount, _isBuilder = true, _feedCard = null, _feedCardBuilder = feedCardBuilder;
-
+    super.key,
+    required this.inputWidget,
+    required Widget Function(BuildContext context, int index) feedCardBuilder,
+    required int feedCardItemCount, required this.feedCardListScrollController}):
+        _isBuilder = true,
+        _feedCardBuilder = feedCardBuilder,
+        _feedCardItemCount = feedCardItemCount,
+        _feedCard = null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade400,
+        backgroundColor: Colors.grey.shade300,
         body: SafeArea(
             child: Container(
                 child: Column(
                   children: [
                     this.inputWidget,
                     SizedBox(height: 20.0),
-                    if (_isBuilder) Expanded(
+                    if(_isBuilder) Expanded(
                         child: ListView.builder(
                             controller: this.feedCardListScrollController,
                             itemCount: this._feedCardItemCount!,
                             itemBuilder: this._feedCardBuilder!
-                        ),
+                        )
                     )
                     else Expanded(
                         child: ListView(

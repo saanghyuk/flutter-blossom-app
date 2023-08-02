@@ -6,9 +6,7 @@ class CupertinoMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        child: Container(
-
-        )
+        child: ListView()
     );
   }
 }
