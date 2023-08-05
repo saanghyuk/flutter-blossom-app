@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:blossom/project/components/pages/main/cupertinoMainPageComponent.dart';
 import 'package:blossom/project/components/pages/main/materialMainPageComponent.dart';
 import 'package:blossom/project/providers/mainPageProvider.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,8 @@ class _MainPageState extends State<MainPage> {
       // 단순히 그 함수를 호출만 할꺼니깐 괜찮다.
       if(!this._scrollController.hasClients) return;
       _provider.event(
-        this._scrollController.position.pixels
+        this._scrollController.position.pixels,
+        this._scrollController.position.userScrollDirection == ScrollDirection.reverse
       );
     });
     super.didChangeDependencies();

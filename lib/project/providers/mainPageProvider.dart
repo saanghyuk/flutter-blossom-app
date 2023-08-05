@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/foundation.dart';
 
 class MainPageProvider with ChangeNotifier{
@@ -11,32 +7,52 @@ class MainPageProvider with ChangeNotifier{
   double opacity = 1.0;
 
   // GETTER/SETTER
-  double height = 0;
+  double? height;
   double? baseHeight;
-  setBaseHeight(double height){
+  double _addValue = 10.0;
+
+  void setBaseHeight(double height){
     this.baseHeight = height;
     this.height = height;
     // this.notifyListeners();
   }
 
-  void event(double scrollHeight){
-    if(scrollHeight >= 100){
+  void event(double scrollHeight, bool isReverse){
+    if(scrollHeight > 500.0 && isReverse){
       if(!this.ignore){
         this.ignore = true;
       }
-      if(height != 0) {
-        height -= 5;
+      if(this.height! > this._addValue){
+        this.height = this.height! -this._addValue;
       }
     } else {
       if(this.ignore){
-        ignore = false;
+        this.ignore = false;
       }
-      if(height <= baseHeight!){
-        height = (height + 5 <= baseHeight!) ? height + 5 : baseHeight!;
+      if(this.height! < this.baseHeight!){
+        this.height = this.height! + this._addValue;
       }
     }
-    print(scrollHeight);
+
     this.notifyListeners();
+
+  //   if(scrollHeight >= 100){
+  //     if(!this.ignore){
+  //       this.ignore = true;
+  //     }
+  //     if(height != 0) {
+  //       height -= 1;
+  //     }
+  //   } else {
+  //     if(this.ignore){
+  //       ignore = false;
+  //       if(height <= baseHeight!){
+  //         height += 1;
+  //       }
+  //     }
+  //   }
+  //   print(scrollHeight);
+  //   this.notifyListeners();
   }
 
 }

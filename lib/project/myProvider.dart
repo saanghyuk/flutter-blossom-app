@@ -9,11 +9,14 @@ class MyProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List _mainProviders = [
+      ChangeNotifierProvider<MainPageProvider>(
+          create: (_) => MainPageProvider()
+      )
+    ];
     return MultiProvider(
         providers: [
-            ChangeNotifierProvider<MainPageProvider>(
-                create: (_) => MainPageProvider()
-            )
-    ], child: ProjectRoute());
+          ..._mainProviders,
+        ], child: ProjectRoute());
   }
 }

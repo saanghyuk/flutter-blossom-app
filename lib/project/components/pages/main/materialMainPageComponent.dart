@@ -15,7 +15,7 @@ class MaterialMainPageComponent extends StatelessWidget {
     return MaterialMainPage.builder(
       inputWidget: FeedInputComponent(),
       feedCardBuilder: (BuildContext context, int index) => FeedCard(onTap: (FeedCardOnTapType type) { print(type); }),
-      feedCardItemCount: 3,
+      feedCardItemCount: 10,
       feedCardListScrollController : this.scrollController,
     );
   }

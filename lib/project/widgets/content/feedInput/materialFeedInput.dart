@@ -55,7 +55,7 @@ class _FeedInputState extends State<FeedInput> {
       child: Opacity(
         opacity: this.widget._opacity ?? 1.0,
         child: Container(
-            height: (this.widget._ignore ?? false) ? this.widget._height : null,
+            height: this.widget._height,
             color: Colors.white,
             child: SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
