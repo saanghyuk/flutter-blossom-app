@@ -20,22 +20,22 @@ class MainPageProvider with ChangeNotifier{
   }
 
   void event(double scrollHeight){
-    if(scrollHeight >= 100){
-      if(!this.ignore){
+
+    if(scrollHeight > 100.0){
+      if(!this.ignore) {
         this.ignore = true;
       }
-      if(height != 0) {
-        height -= 5;
+      if(this.height != 0){
+        this.height -= 1;
       }
     } else {
       if(this.ignore){
-        ignore = false;
-      }
-      if(height <= baseHeight!){
-        height = (height + 5 <= baseHeight!) ? height + 5 : baseHeight!;
+        this.ignore= false;
+        if(height <= this.baseHeight!){
+          this.height = this.height! +1;
+        }
       }
     }
-    print(scrollHeight);
     this.notifyListeners();
   }
 
