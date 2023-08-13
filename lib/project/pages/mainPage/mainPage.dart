@@ -11,7 +11,7 @@ class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
   static const String path = "/main";
   static const RouteSettings settings = RouteSettings(
-    name: MainPage.path
+      name: MainPage.path
   );
   static final Widget Function(BuildContext context) builder = (BuildContext context) => MainPage();
 
@@ -31,8 +31,8 @@ class _MainPageState extends State<MainPage> {
       // 단순히 그 함수를 호출만 할꺼니깐 괜찮다.
       if(!this._scrollController.hasClients) return;
       _provider.event(
-        this._scrollController.position.pixels,
-        this._scrollController.position.userScrollDirection == ScrollDirection.reverse
+          this._scrollController.position.pixels,
+          this._scrollController.position.userScrollDirection == ScrollDirection.reverse
       );
     });
     super.didChangeDependencies();
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     if(Platform.isIOS) return CupertinoMainPageComponent();
     return MaterialMainPageComponent(
-      scrollController : this._scrollController
+        scrollController : this._scrollController
     );
   }
 }

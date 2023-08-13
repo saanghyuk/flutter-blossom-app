@@ -1,5 +1,6 @@
 import 'package:blossom/project/pages/mainpage/mainPage.dart';
 import 'package:blossom/project/pages/splashpage/splashPage.dart';
+import 'package:blossom/project/widgets/pages/loginPage/loginPage.dart';
 import 'package:flutter/material.dart';
 
 class ProjectMaterialRoute extends StatelessWidget {
@@ -11,6 +12,10 @@ class ProjectMaterialRoute extends StatelessWidget {
       debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (RouteSettings route){
+        if(route.name == LoginPage.path) return MaterialPageRoute(
+            builder: LoginPage.builder,
+            settings: LoginPage.settings
+        );
 
         if(route.name == MainPage.path){
           return MaterialPageRoute(settings: MainPage.settings, builder: MainPage.builder);

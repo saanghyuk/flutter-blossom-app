@@ -7,7 +7,15 @@ class MaterialSplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text(this.txt))
+      body: Center(
+          child: Column(
+            children: [
+              /// 비동기 로직을 넣을 떄 테스트하면 좋은
+              /// 비동기 로직을 넣을때는 항상 Circular를 무조건 넣는다.
+              CircularProgressIndicator(),
+              Text(this.txt),
+            ],
+          ))
     );
   }
 }

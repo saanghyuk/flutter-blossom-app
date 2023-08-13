@@ -33,10 +33,10 @@ class _FeedInputState extends State<FeedInput> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        final RenderBox? _box = this.context.findRenderObject() as RenderBox;
-        if(_box == null) throw "_BOX ERR"; // TODO: 개발단계에서만 사용하고 변경
-        if(this.widget._renderDone == null) return;
-        this.widget._renderDone!(_box.size);
+      final RenderBox? _box = this.context.findRenderObject() as RenderBox;
+      if(_box == null) throw "_BOX ERR"; // TODO: 개발단계에서만 사용하고 변경
+      if(this.widget._renderDone == null) return;
+      this.widget._renderDone!(_box.size);
     });
     super.initState();
   }

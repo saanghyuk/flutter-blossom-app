@@ -31,20 +31,21 @@ class _MaterialMainPageState extends State<MaterialMainPage> with SingleTickerPr
   Animation<Offset>? animation;
   Animation<double>? animation2;
 
+
   @override
   void initState() {
     // TODO: implement initState
     this.animationController = AnimationController(
-        vsync: this,
-        duration: Duration(milliseconds: 300),
+      vsync: this,
+      duration: Duration(milliseconds: 300),
     );
     this.animation = Tween<Offset>(
         begin: Offset.zero,
         end: Offset(-1, 0)).animate(this.animationController!);
 
     this.animation2 = Tween<double>(
-      begin: 0,
-      end: 200.0
+        begin: 0,
+        end: 200.0
     ).animate(this.animationController!);
 
     this.animationController!.addListener(() {
@@ -63,39 +64,40 @@ class _MaterialMainPageState extends State<MaterialMainPage> with SingleTickerPr
   }
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade300,
-        body: SlideTransition(
-          position: animation!,
-          child: SafeArea(
-              child: Container(
-                // 테스트 해보기
-                // height: this.animation2!.value,
-                  child: Column(
-                    children: [
-                      this.widget.inputWidget,
-                      SizedBox(height: 20.0),
-                      if(widget._isBuilder) Expanded(
-                          child: ListView.builder(
-                              controller: this.widget.feedCardListScrollController,
-                              itemCount: this.widget._feedCardItemCount!,
-                              itemBuilder: this.widget._feedCardBuilder!
-                          )
-                      )
-                      else Expanded(
-                          child: ListView(
+        // backgroundColor: Colors.grey.shade300,
+      body: SlideTransition(
+        position: animation!,
+        child: SafeArea(
+            child: Container(
+              // 테스트 해보기
+              // height: this.animation2!.value,
+                child: Column(
+                  children: [
+                    this.widget.inputWidget,
+                    SizedBox(height: 20.0),
+                    if(widget._isBuilder) Expanded(
+                        child: ListView.builder(
                             controller: this.widget.feedCardListScrollController,
-                            physics: BouncingScrollPhysics(),
-                            children: this.widget._feedCard!,
-                          )
-                      )
-                    ],
-                  )
-              )
-          ),
+                            itemCount: this.widget._feedCardItemCount!,
+                            itemBuilder: this.widget._feedCardBuilder!
+                        )
+                    )
+                    else Expanded(
+                        child: ListView(
+                          controller: this.widget.feedCardListScrollController,
+                          physics: BouncingScrollPhysics(),
+                          children: this.widget._feedCard!,
+                        )
+                    )
+                  ],
+                )
+            )
         ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         showSelectedLabels: false,
@@ -103,13 +105,15 @@ class _MaterialMainPageState extends State<MaterialMainPage> with SingleTickerPr
         onTap: (int index) async {
           // 실행 해줘야 시간이 흐른다.
           // 그냥 Future로 인식하면 된다.
-          await this.animationController!.forward();
-          // await Navigator.of(context).push(
-          //   MaterialProjectPageRoute(
-          //       builder: (_) => Scaffold(),
-          //       settings: RouteSettings(name : "/test")
-          //   )
-          // );
+          this.animationController!.forward();
+          await Navigator.of(context).push(
+            MaterialProjectPageRoute(
+                builder: (_) => Scaffold(
+                  appBar: AppBar(),
+                ),
+                settings: RouteSettings(name : "/test")
+            )
+          );
           this.animationController!.reverse();
         },
         items: [

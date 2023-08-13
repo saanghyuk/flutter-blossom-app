@@ -18,14 +18,17 @@ class MainPageProvider with ChangeNotifier{
   }
 
   void event(double scrollHeight, bool isReverse){
+    // 내려갈때 isReverse = true;
     if(scrollHeight > 500.0 && isReverse){
+      print("${scrollHeight} + ${isReverse}");
       if(!this.ignore){
         this.ignore = true;
       }
       if(this.height! > this._addValue){
-        this.height = this.height! -this._addValue;
+        this.height = this.height! - this._addValue;
       }
     } else {
+      print("${scrollHeight} + ${isReverse}");
       if(this.ignore){
         this.ignore = false;
       }
