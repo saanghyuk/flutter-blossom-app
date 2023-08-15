@@ -1,6 +1,6 @@
+import 'package:blossom/project/pages/loginPage/loginPage.dart';
 import 'package:blossom/project/pages/mainpage/mainPage.dart';
 import 'package:blossom/project/pages/splashpage/splashPage.dart';
-import 'package:blossom/project/widgets/pages/loginPage/loginPage.dart';
 import 'package:flutter/material.dart';
 
 class ProjectMaterialRoute extends StatelessWidget {
