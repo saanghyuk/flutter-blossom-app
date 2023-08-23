@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPageProvider with ChangeNotifier{
 
-
   // interface타입이여도 loginCheck부를 수 있다. 정의가 되있으면 부를 수 있다.
   final LoginServiceInterface _loginService = LoginService();
 
@@ -17,7 +16,8 @@ class SplashPageProvider with ChangeNotifier{
     bool _loginCheck = await this._loginService.loginCheck();
     if(_loginCheck){
       await onDone();
+    } else{
+      await onErr();
     }
-
   }
 }

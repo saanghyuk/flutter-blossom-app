@@ -115,10 +115,13 @@ class LoginPageWidget extends StatelessWidget {
                     children: [
                       FloatingActionButton(onPressed: (){}, child: Text("A"),
                         elevation: .2,
+                        heroTag: [],
                       ),
                       FloatingActionButton(onPressed: (){}, child: Text("B"),
+                        heroTag: [],
                         elevation: .2,),
                       FloatingActionButton(onPressed: (){}, child: Text("C"),
+                        heroTag: [],
                         elevation: .2,),
                     ],
                   ),

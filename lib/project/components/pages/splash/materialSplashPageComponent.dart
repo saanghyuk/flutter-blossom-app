@@ -9,3 +9,4 @@ class MaterialSplashPageComponent extends StatelessWidget {
     return MaterialSplashPage(txt: "Hello");
   }
 }
+

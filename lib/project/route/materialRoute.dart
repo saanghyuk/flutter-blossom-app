@@ -9,6 +9,8 @@ class ProjectMaterialRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /// M2 디자인
+      theme: ThemeData(useMaterial3: false),
       debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (RouteSettings route){
