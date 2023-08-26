@@ -1,5 +1,6 @@
 
 import 'package:blossom/project/myRoute.dart';
+import 'package:blossom/project/providers/loginPageProvider.dart';
 import 'package:blossom/project/providers/mainPageProvider.dart';
 import 'package:blossom/project/providers/splashPageProvider.dart';
 import 'package:flutter/widgets.dart';
@@ -18,10 +19,17 @@ class MyProvider extends StatelessWidget {
     List<ChangeNotifierProvider> _splashProviders = [
       ChangeNotifierProvider<SplashPageProvider>(create: (_) => SplashPageProvider())
     ];
+
+    List<ChangeNotifierProvider> _loginProviders = [
+      ChangeNotifierProvider<LoginPageProvider>(create: (_) => LoginPageProvider())
+    ];
+
+
     return MultiProvider(
         providers: [
           ..._mainProviders,
           ..._splashProviders,
+          ..._loginProviders
         ], child: ProjectRoute());
   }
 }
