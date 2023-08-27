@@ -24,6 +24,7 @@ class MyProvider extends StatelessWidget {
       ChangeNotifierProvider<LoginPageProvider>(create: (_) => LoginPageProvider())
     ];
 
+
     return MultiProvider(
         providers: [
           ..._mainProviders,

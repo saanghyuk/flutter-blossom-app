@@ -1,3 +1,6 @@
+
+
+import 'package:blossom/project/modules/httpModule.dart';
 import 'package:blossom/project/modules/localDB.dart';
 
 abstract interface class LoginServiceInterface{
@@ -18,9 +21,13 @@ final class LoginService implements LoginServiceInterface{
 
   @override
   Future<bool> login({required String email, required String pwd}) async {
-    // TODO: implement login
     /// HttpModule.post()
     /// LocalDB에 토큰 저장
     return true;
   }
+
+
 }
+
+
+

@@ -9,6 +9,8 @@ class LoginPageComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginPageProvider _loginProvider = context.read<LoginPageProvider>();
-    return LoginPageWidget();
+    return LoginPageWidget(
+
+    );
   }
 }
