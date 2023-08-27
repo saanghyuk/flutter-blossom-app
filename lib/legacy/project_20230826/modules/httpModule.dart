@@ -15,7 +15,7 @@ class HttpModuleResponseModel{
 final class HttpModule{
   static Future<HttpModuleResponseModel> get({
                     required String uri,
-                    required Map<String, String>? headers}) async {
+                    Map<String, String>? headers}) async {
 
     final http.Response _res = await http.get(Uri.parse(uri), headers: headers);
     return HttpModuleResponseModel.http(

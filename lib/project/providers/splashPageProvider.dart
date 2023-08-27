@@ -14,7 +14,8 @@ class SplashPageProvider with ChangeNotifier{
     required FutureOr<void> Function() onErr,
   }) async {
     bool _loginCheck = await this._loginService.loginCheck();
-    if(_loginCheck){
+    /// @TODO 서버 연결을 위해 테스트
+    if(true){
       await onDone();
     } else{
       await onErr();

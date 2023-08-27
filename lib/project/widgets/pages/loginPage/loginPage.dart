@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({Key? key}) : super(key: key);
+  final FutureOr<void> Function(String email, String pwd) onLogin;
+  final String errMsg;
+  const LoginPageWidget({Key? key, required this.onLogin, required this.errMsg}) : super(key: key);
 
   @override
   State<LoginPageWidget> createState() => _LoginPageWidgetState();
@@ -113,9 +117,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                   ),
                   TextButton(onPressed: (){}, child: Text("f-pwd")),
-                  MaterialButton(onPressed: (){
+                  MaterialButton(onPressed: () async {
                     this._emailFocus.unfocus();
                     this._pwdFocus.unfocus();
+                    final String _userEmail = this._emailController.text;
+                    final String _userPwd = this._pwdController.text;
+                    /// Validation은 보낸 다음에
+                    await this.widget.onLogin(_userEmail, _userPwd);
+
                   }, child: Text("Login")),
                   Container(
                       child: Stack(

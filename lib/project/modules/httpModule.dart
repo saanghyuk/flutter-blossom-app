@@ -18,7 +18,7 @@ final class HttpModule{
     }) async {
       final http.Response _res = await http.get(Uri.parse(uri), headers: headers);
       return HttpModuleResponseModel.http(response: _res);
-}
+  }
 
     static Future<HttpModuleResponseModel> post({
         required String uri,
