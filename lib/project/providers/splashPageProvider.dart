@@ -15,7 +15,7 @@ class SplashPageProvider with ChangeNotifier{
   }) async {
     bool _loginCheck = await this._loginService.loginCheck();
     /// @TODO 서버 연결을 위해 테스트
-    if(true){
+    if(_loginCheck){
       await onDone();
     } else{
       await onErr();
