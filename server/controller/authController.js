@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyBPuGF7bXonD8G5-s7nDETpOgcHSFlpjgU";
+const API_KEY = "";
 const {
   AuthDataModel,
   AuthResponseDataModel
