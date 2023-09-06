@@ -14,12 +14,11 @@ final class LoginPageProvider with ChangeNotifier{
         required String pwd,
         required Future<void> Function() onLogin,
         required Future<void> Function() onErr}) async {
-          final _loginCheck = await _loginService.login(email: email, pwd: pwd);
-
+    final _loginCheck = await _loginService.login(email: email, pwd: pwd);
           if(_loginCheck){
+          // if(false){
             await onLogin();
           } else {
-            // print("오류입니다.");
             this.errMsg = "오류입니다";
             /// this.notifyListner(); 필요가 없다.
             await onErr();

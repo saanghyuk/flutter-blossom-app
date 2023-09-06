@@ -21,22 +21,21 @@ class LoginPageComponent extends StatelessWidget {
     // );
 
 
-    return LoginPageWidget(
-        onLogin: (String email, String pwd) {
-          _loginProvider.login(
-              email: email, pwd: pwd,
-              onLogin: () async {
-                  /// TODO : 화면 이동
-              },
-              onErr: () async {
-                  await showDialog(
-                      context: context,
-                      builder:(c) => AlertDialog(
-                          title: Text(_loginProvider.errMsg)
-                      )
-                  );
-                }
+    return LoginPageWidget(onLogin: (String email, String pwd) {
+      _loginProvider.login(
+          email: email, pwd: pwd,
+          onLogin: () async {
+              /// TODO : 화면 이동
+          },
+          onErr: () async {
+              await showDialog(
+                  context: context,
+                  builder:(c) => AlertDialog(
+                      title: Text(_loginProvider.errMsg)
+                  )
               );
+            }
+          );
         },
         /// 팝업 말고인 경우 대비해 넣어놓음
         errMsg: _loginProvider.errMsg
