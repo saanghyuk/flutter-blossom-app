@@ -1,12 +1,17 @@
 const API_KEY = "AIzaSyBPuGF7bXonD8G5-s7nDETpOgcHSFlpjgU";
 const {
   AuthDataModel,
-  AuthResponseDataModel
+  AuthResponseDataModel,
+  FirebaseAuthDataModel
 } = require("../dataObject/authDataModel");
 
 class AuthController {
   login = async (req, res) => {
-    const { email, password } = req.body;
+    // console.log(req.body);
+    let { email, password } = req.body;
+    password = Buffer.from(password, "base64").toString("utf-8");
+
+    console.log(password);
     /// password를 복호화 해서 넘겨야 한다.
     let result;
     /// HTTP -> Firebase
@@ -20,7 +25,26 @@ class AuthController {
           body: new AuthDataModel({ email, password }).toBody()
         }
       );
-      result = new AuthResponseDataModel(await res.json());
+
+      let body = await res.json();
+      // @TODO
+      /// Firebase 정상/오류 처리
+      // result = new AuthResponseDataModel(await res.json());
+      let model = AuthResponseDataModel.prototype.json({
+        code: 200,
+        authType: "Firebase",
+        body
+      });
+
+      // const sample = {
+      //   code: 200,
+      //   body: {
+      //     authType: "Firebase"
+      //     //... email, displayName, idToken, refreshToken, expiresIn
+      //   }
+      // };
+      console.log(model);
+      result = model;
     } catch (error) {
       console.log(error);
       result = {};

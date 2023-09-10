@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:blossom/project/models/authDataObject/authResponseModel.dart';
 import 'package:blossom/project/modules/httpModule.dart';
 import 'package:blossom/project/modules/localDB.dart';
 
@@ -21,19 +21,30 @@ final class LoginService implements LoginServiceInterface{
     return _localDB.getBool(_LOGIN_CHECK_KEY) ?? false;
   }
 
+  /// Firebase Login함수 구현
   @override
   Future<bool> login({required String email, required String pwd})  async {
+          final _body = json.encode(
+          AuthSignInModel(email: email, password: base64Encode(pwd.codeUnits)).toMap()
+        );
+
+          // print(_body);
+          // throw "stop";
+
           final HttpModuleResponseModel _res = await HttpModule.post(
                 uri: "http://192.168.45.171:3000/auth",
                 headers: {"content-type": "application/json"},
-                body: json.encode(AuthSignInModel(
-                email: email,
-                password: pwd).toMap()
-          ));
+                body: _body );
 
-          Map<String, dynamic> _result = json.decode(_res.body);
+          final Map<String, dynamic> _result = json.decode(_res.body);
+
+          // 오류 확인
+          AuthResponseModel model = AuthResponseModel.json(_result);
+          final _firebaseModel = model.body as FirebaseAuthDataModel;
+
+
           print(_result);
           final AuthSignInResponseModel _userData = AuthSignInResponseModel.json(json:_result);
           return true;
-}
+  }
 }
