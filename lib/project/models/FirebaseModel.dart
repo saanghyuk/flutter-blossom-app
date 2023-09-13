@@ -5,10 +5,12 @@ abstract class FirebaseDataModel{
     return FirebaseErrModel(errMsg: json['errMsg']);
   }
 }
+
 class FirebaseOkModel implements FirebaseDataModel{
   final String name;
   FirebaseOkModel({required this.name});
 }
+
 class FirebaseErrModel implements FirebaseDataModel{
   final String errMsg;
   FirebaseErrModel({required this.errMsg});

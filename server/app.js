@@ -6,7 +6,11 @@ const port = process.env.PORT || 3000;
 const mainRouter = require("./router/mainRouter.js");
 const authRouter = require("./router/authRouter.js");
 
-app.use(express.json());
+// 기본은 form-data 형태로 간다.
+app.use(express.json()); /// application/json
+/// URLENCODED 데이터
+// app.use(express.urlencoded()); // xxx urlencoded
+
 // app.get("/", (req, res) => {});
 
 app.use("/main", mainRouter);

@@ -5,17 +5,42 @@ abstract class AuthDataModel{
   /// 상위 객체의 factory에서 하위 객체를 만들려면 상하관계가 implements여야 한다.
   factory AuthDataModel.json(Map<String, dynamic> json){
     if(json['authType'] == 'Firebase'){
-      return FirebaseAuthDataModel();
+      /// {} // {...}
+      if(json.isEmpty){
+        return FirebaseAuthDataErrModel();
+      }
+      return FirebaseAuthDataOkModel(json: json);
     } else {
       return GoogleAuthDataModel();
     }
   }
-
 }
 
 final class FirebaseAuthDataModel implements AuthDataModel{
 
 }
+
+final class FirebaseAuthDataOkModel implements AuthDataModel{
+  final String email;
+  final String displayName;
+  final String idToken;
+  final String refreshToken;
+  final String expiresIn;
+  FirebaseAuthDataOkModel({required Map<String, dynamic> json})
+    :email = json['email'].toString(),
+    displayName = json['displayName'].toString(),
+    idToken = json['idToken'].toString(),
+    refreshToken = json['refreshToken'].toString(),
+    expiresIn = json['expiresIn'].toString();
+
+}
+
+final class FirebaseAuthDataErrModel implements AuthDataModel{
+
+}
+
+
+
 final class GoogleAuthDataModel implements AuthDataModel{}
 
 

@@ -9,9 +9,12 @@ class AuthController {
   login = async (req, res) => {
     // console.log(req.body);
     let { email, password } = req.body;
+
+    if (email == null || password == null) return res.json("args err");
+
+    /// @TODO: Test용 주석
     password = Buffer.from(password, "base64").toString("utf-8");
 
-    console.log(password);
     /// password를 복호화 해서 넘겨야 한다.
     let result;
     /// HTTP -> Firebase
@@ -31,7 +34,6 @@ class AuthController {
       /// Firebase 정상/오류 처리
       // result = new AuthResponseDataModel(await res.json());
       let model = AuthResponseDataModel.prototype.json({
-        code: 200,
         authType: "Firebase",
         body
       });
@@ -43,10 +45,9 @@ class AuthController {
       //     //... email, displayName, idToken, refreshToken, expiresIn
       //   }
       // };
-      console.log(model);
+
       result = model;
     } catch (error) {
-      console.log(error);
       result = {};
     }
 

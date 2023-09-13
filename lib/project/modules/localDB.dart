@@ -27,6 +27,11 @@ final class LocalDB{
   void close(){
     LocalDB._preferences = null;
     LocalDB._localDB = null;
-}
+    }
+
+    Future<bool> setDatas(Map<String, dynamic> datas) async {
+        /// @ TODO : 일요일 직접 만들어 보기
+        return true;
+    }
 
 }
