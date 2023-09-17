@@ -6,7 +6,7 @@ abstract class AuthDataModel{
   factory AuthDataModel.json(Map<String, dynamic> json){
     if(json['authType'] == 'Firebase'){
       /// {} // {...}
-      if(json.isEmpty){
+      if(json.length == 1 ){
         return FirebaseAuthDataErrModel();
       }
       return FirebaseAuthDataOkModel(json: json);
@@ -20,7 +20,7 @@ final class FirebaseAuthDataModel implements AuthDataModel{
 
 }
 
-final class FirebaseAuthDataOkModel implements AuthDataModel{
+final class FirebaseAuthDataOkModel extends FirebaseAuthDataModel{
   final String email;
   final String displayName;
   final String idToken;
@@ -35,7 +35,7 @@ final class FirebaseAuthDataOkModel implements AuthDataModel{
 
 }
 
-final class FirebaseAuthDataErrModel implements AuthDataModel{
+final class FirebaseAuthDataErrModel extends FirebaseAuthDataModel{
 
 }
 

@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
-    final _dataProvider = this.context.read<MainPageDataProvider>();
+    final _dataProvider = this.context.watch<MainPageDataProvider>();
     final _provider = this.context.read<MainPageProvider>();
     this._scrollController.addListener(() {
       // 값을 사용할게 아니라서 notifylistner에서 업데이트 할 필요가 없다.

@@ -1,4 +1,5 @@
 
+import 'package:blossom/legacy/20230906_project/project/pages/mainPage/mainPage.dart';
 import 'package:blossom/project/myRoute.dart';
 import 'package:blossom/project/providers/loginPageProvider.dart';
 import 'package:blossom/project/providers/mainPageDataProvider.dart';
@@ -16,8 +17,9 @@ class MyProvider extends StatelessWidget {
       ChangeNotifierProvider<MainPageProvider>(
           create: (_) => MainPageProvider()
       ),
-      ChangeNotifierProvider<MainPageDataProvider>(
-          create: (_) => MainPageDataProvider()
+      ChangeNotifierProxyProvider<LoginPageProvider, MainPageDataProvider>(
+          create: (BuildContext context) => MainPageDataProvider(loginPageProvider: context.read<LoginPageProvider>()),
+          update: (BuildContext context, LoginPageProvider loginProvider, _) => MainPageDataProvider(loginPageProvider: loginProvider)
       )
 
     ];
@@ -29,14 +31,15 @@ class MyProvider extends StatelessWidget {
     ];
 
     List<ChangeNotifierProvider> _loginProviders = [
-      ChangeNotifierProvider<LoginPageProvider>(create: (_) => LoginPageProvider())
+      ChangeNotifierProvider<LoginPageProvider>(create: (_) => LoginPageProvider()),
+
     ];
 
     return MultiProvider(
         providers: [
+          ..._loginProviders,
           ..._mainProviders,
           ..._splashProviders,
-          ..._loginProviders
         ], child: ProjectRoute());
   }
 }

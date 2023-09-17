@@ -3,6 +3,8 @@ import 'package:blossom/project/widgets/pages/loginPage/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../pages/mainPage/mainPage.dart';
+
 class LoginPageComponent extends StatelessWidget {
   const LoginPageComponent({Key? key}) : super(key: key);
 
@@ -26,7 +28,7 @@ class LoginPageComponent extends StatelessWidget {
           _loginProvider.login(
               email: email, pwd: pwd,
               onLogin: () async {
-                  /// TODO : 화면 이동
+                  await Navigator.of(context).pushReplacementNamed(MainPage.path);
               },
               onErr: () async {
                   await showDialog(

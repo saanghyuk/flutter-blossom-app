@@ -11,6 +11,8 @@ abstract interface class LoginServiceInterface{
 }
 
 final class LoginService implements LoginServiceInterface{
+ static const String user_data_key = "userData";
+
  static const String _LOGIN_CHECK_KEY = "login_check";
 
  static const String login_key = "login";
@@ -46,9 +48,13 @@ final class LoginService implements LoginServiceInterface{
           final Map<String, dynamic> _result = json.decode(_res.body);
 
           // 오류 확인
+          /// code랑 body로 나눠저 가지고 있는다.
+          /// body는 AuthResponseModel.json으로 돌려서 FirebaseAuthDataOkModel로 가지고 있게 된다.
           AuthResponseModel model = AuthResponseModel.json(_result);
 
+          /// FirebaseAuthDataModel 현재 여기에 아무것도 없는데?
           final _firebaseModel = model.body as FirebaseAuthDataModel;
+
           if(model.code == 200){
               final _okModel = _firebaseModel as FirebaseAuthDataOkModel;
               // final AuthSignInResponseModel _userData = AuthSignInResponseModel.json(json:_result);
@@ -61,24 +67,20 @@ final class LoginService implements LoginServiceInterface{
               // await _db.setString("token", _okModel.expiresIn);
               // await _db.setString("token", _okModel.email);
               // await _db.setString("token", _okModel.displayName);
-              await _db.setDatas({
+              final bool _save_check = await _db.setDatas(user_data_key, {
                   login_key : true,
                   token_key: _okModel.idToken,
                   refreshToken_key : _okModel.refreshToken,
                   expiresIn_key: _okModel.expiresIn,
                   email_key : _okModel.email,
-                  displayName_key: _okModel.displayName
-});
+                  displayName_key: _okModel.displayName});
+
+              if(!_save_check) return false;
 
               return true;
           } else{
               final _errModel = _firebaseModel as FirebaseAuthDataErrModel;
-
               return false;
           }
-
-
-
-
   }
 }

@@ -22,6 +22,8 @@ final class AuthSignInModel{
 
 }
 
+
+/// AuthSignInResponse Model
 final class AuthSignInResponseModel{
   final String email;
   final String displayName;

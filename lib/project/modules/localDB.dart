@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:blossom/project/services/loginService.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -29,9 +32,34 @@ final class LocalDB{
     LocalDB._localDB = null;
     }
 
-    Future<bool> setDatas(Map<String, dynamic> datas) async {
-        /// @ TODO : 일요일 직접 만들어 보기
-        return true;
+
+
+    Future<Map<String, dynamic>> getDatas(String key) async {
+      final String? _userDataString = _preferences!.getString(key);
+      return _userDataString == null ? {} : json.decode(_userDataString);
+    }
+
+    Future<bool> setDatas(String key, Map<String, dynamic> datas) async {
+        /// @ TODO
+        // for(int i = 0; i < datas.length; i++){}
+        // datas.forEach((String key, dynamic value) {
+        //     if(value.runtimeType == int){
+        //
+        //     } else if(value.runtimeType == String){
+        //
+        //     } else if(value.runtimeType == double){
+        //
+        //     } else if(value.runtimeType == bool){
+        //
+        //     } else {
+        //       throw "Type Error";
+        //     }
+        // });
+        final String _encodeData = json.encode(datas);
+        final _save_result = await _preferences!.setString(key, _encodeData);
+        if(!_save_result) throw "_save_result ERR";
+
+        return _save_result;
     }
 
 }

@@ -9,6 +9,7 @@ class AuthController {
   login = async (req, res) => {
     // console.log(req.body);
     let { email, password } = req.body;
+    console.log(email);
 
     if (email == null || password == null) return res.json("args err");
 
