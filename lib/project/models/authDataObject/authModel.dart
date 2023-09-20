@@ -4,6 +4,18 @@ import 'dart:convert';
 
 class AuthModel{}
 
+final class AuthSignInCheckModel{
+  final String email;
+  final String idToken;
+  const AuthSignInCheckModel({
+    required this.email,
+    required this.idToken
+  });
+  Map<String, String> toMap() => {"email": this.email, "idToken": this.idToken};
+
+}
+
+
 final class AuthSignInModel{
   final String email;
   final String password;

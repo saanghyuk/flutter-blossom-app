@@ -34,6 +34,10 @@ AuthResponseDataModel.prototype.json = function({ authType, body }) {
   return new AuthResponseDataModel({ code: _code, body: _body });
 };
 
+AuthResponseDataModel.prototype.authCheck = function({ code, body }) {
+  return { code, body };
+};
+
 class AuthDataModel_Abstract {}
 class GoogleAuthDataModel extends AuthDataModel_Abstract {}
 class FirebaseAuthDataModel extends AuthDataModel_Abstract {

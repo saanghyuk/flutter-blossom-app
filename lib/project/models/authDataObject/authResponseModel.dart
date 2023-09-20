@@ -14,6 +14,16 @@ abstract class AuthDataModel{
       return GoogleAuthDataModel();
     }
   }
+
+  factory AuthDataModel.authCheck(bool check){
+    return AuthCheckModel(check: check);
+  }
+}
+
+
+final class AuthCheckModel implements AuthDataModel{
+  final bool check;
+  const AuthCheckModel({required this.check});
 }
 
 final class FirebaseAuthDataModel implements AuthDataModel{
@@ -65,7 +75,7 @@ final class AuthResponseModel extends ServiceResponseModel<AuthDataModel>{
   });
 
 
-factory AuthResponseModel.json(Map<String, dynamic> json){
+  factory AuthResponseModel.json(Map<String, dynamic> json){
       return AuthResponseModel( /// T 안 적혀 있으면
           code: json['code'],
           /// T 객체고 클래스고 그런게 아니라 타입으로 보니깐, 추론이 뭘 해도 안되네.
@@ -73,6 +83,12 @@ factory AuthResponseModel.json(Map<String, dynamic> json){
           body: AuthDataModel.json(json['body']) /// 모델링 필요
       );
   }
+
+  factory AuthResponseModel.authCheck(Map<String, dynamic> json){
+    return AuthResponseModel(code: json['code'], body: AuthDataModel.authCheck(json['body']));
+  }
+
+
 }
 
 

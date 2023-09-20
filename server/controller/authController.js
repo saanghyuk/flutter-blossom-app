@@ -4,8 +4,34 @@ const {
   AuthResponseDataModel,
   FirebaseAuthDataModel
 } = require("../dataObject/authDataModel");
+const authDB = require("../testDB/authDB");
 
 class AuthController {
+  loginCheck = (req, res) => {
+    const { email, idToken } = req.body;
+    console.log(`${email} / ${idToken}`);
+    if (authDB[email] === null)
+      return res.json(
+        new AuthResponseDataModel.prototype.authCheck({
+          code: 400,
+          body: false
+        })
+      );
+    if (authDB[email] !== idToken)
+      return res.json(
+        AuthResponseDataModel.prototype.authCheck({
+          code: 300,
+          body: false
+        })
+      );
+    return res.json(
+      AuthResponseDataModel.prototype.authCheck({
+        code: 200,
+        body: true
+      })
+    );
+  };
+
   login = async (req, res) => {
     // console.log(req.body);
     let { email, password } = req.body;
@@ -31,6 +57,11 @@ class AuthController {
       );
 
       let body = await res.json();
+      /// 에러 처리
+      const res_email = body.email;
+      const res_idToken = body.idToken;
+      authDB[res_email] = res_idToken;
+
       // @TODO
       /// Firebase 정상/오류 처리
       // result = new AuthResponseDataModel(await res.json());
@@ -38,6 +69,9 @@ class AuthController {
         authType: "Firebase",
         body
       });
+      console.log("==========");
+      console.log(body);
+      console.log("==========");
 
       // const sample = {
       //   code: 200,

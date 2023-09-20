@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="airbridge-common.js"></script> <!-- 공통 스크립트를 여기에 추가 -->
+</head>
+
+<body>
+  <h1 id="welcome-message">Welcome!</h1>
+  <header>
+    <h1>My Simple Shopping Mall</h1>
+  </header>
+
+  <button id="my-button">Check Airbridge Status</button>
+  <button id="app_download">Go to app</button>
+  <button id="deeplinking-button-1">Deep Link</button>
+
+
+
+
+  <nav>
+    <a href="/">Home</a> | <a href="/products.html">Products</a> | <a href="/about.html">About</a>
+  </nav>
+
+  <h2>Welcome!</h2>
+  <p>This is our amazing, although simple, online shopping mall.</p>
+
+  <script>
+    // URL에서 쿼리 파라미터를 읽어온다
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name') || 'Guest';
+
+    // 쿼리 파라미터에서 읽어온 'name' 값을 사용하여 메시지를 업데이트한다
+    document.getElementById('welcome-message').textContent = `Welcome! ${name}`;
+  </script>
+
+  <script>
+
+    airbridge.setDeeplinks({
+      buttonID: "deeplinking-button-1",
+      deeplinks: {
+        ios: "https://airbridge.io",
+        android: "https://airbridge.io",
+        desktop: "https://naver.com"
+      },
+      fallbacks: {
+        // itunes-appstore(default), google-play, url
+        ios: "itunes-appstore",
+        // google-play(default), itunes-appstore, url
+        android: "google-play"
+      },
+      redirect: true
+    });
+
+
+    // DOM이 로드되면 실행
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+      const myButton = document.getElementById("deeplinking-button-1");
+
+      // 버튼을 누르면 airbridge 객체의 상태를 콘솔에 출력
+      myButton.onclick = () => {
+        console.log(airbridge.isSDKEnabled);
+      };
+      const app_download = document.getElementById("app_download");
+
+      // 버튼을 누르면 airbridge 객체의 상태를 콘솔에 출력
+
+      airbridge.setDownloads({
+        buttonID: "app_download",
+        // or ["app_download_1", "app_download_2", ...]
+        defaultParams: {
+          campaign: 'example_campaign',
+          medium: 'example_medium',
+          term: 'example_term',
+          content: 'example_content'
+        },
+        ctaParams: {
+          cta_param_1: '1',
+          cta_param_2: '2',
+          cta_param_3: '3',
+        }
+      })
+
+
+    });
+
+
+
+  </script>
+</body>
+
+</html>

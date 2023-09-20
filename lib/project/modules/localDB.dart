@@ -27,6 +27,12 @@ final class LocalDB{
     return LocalDB._preferences!.getBool(key);
   }
 
+  /// 싱글톤
+  Future<bool> setBool(String key, bool value) async {
+    if(_preferences == null ) throw "생성 필요";
+    return await _preferences!.setBool(key, value);
+  }
+
   void close(){
     LocalDB._preferences = null;
     LocalDB._localDB = null;

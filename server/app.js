@@ -8,10 +8,19 @@ const authRouter = require("./router/authRouter.js");
 
 // 기본은 form-data 형태로 간다.
 app.use(express.json()); /// application/json
+
 /// URLENCODED 데이터
 // app.use(express.urlencoded()); // xxx urlencoded
 
-// app.get("/", (req, res) => {});
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/purchase-complete", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/purchase-complete.html"));
+});
 
 app.use("/main", mainRouter);
 app.use("/auth", authRouter);

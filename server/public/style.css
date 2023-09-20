@@ -1,0 +1,42 @@
+/* Basic Styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #232f3e;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+}
+
+nav {
+  text-align: center;
+  background-color: #131a22;
+  color: white;
+  padding: 0.5em;
+}
+
+nav a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Products Styles */
+section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+article {
+  border: 1px solid #ccc;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+article img {
+  max-width: 100%;
+}
