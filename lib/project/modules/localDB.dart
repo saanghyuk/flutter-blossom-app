@@ -41,6 +41,9 @@ final class LocalDB{
 
 
     Future<Map<String, dynamic>> getDatas(String key) async {
+
+    if(_preferences == null ) throw "생성 필요";
+      /// loginCheck일때 key는 "userData"
       final String? _userDataString = _preferences!.getString(key);
       return _userDataString == null ? {} : json.decode(_userDataString);
     }

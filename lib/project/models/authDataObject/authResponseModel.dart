@@ -6,7 +6,7 @@ abstract class AuthDataModel{
   factory AuthDataModel.json(Map<String, dynamic> json){
     if(json['authType'] == 'Firebase'){
       /// {} // {...}
-      if(json.length == 1 ){
+      if(json.length == 1){
         return FirebaseAuthDataErrModel();
       }
       return FirebaseAuthDataOkModel(json: json);
@@ -76,6 +76,7 @@ final class AuthResponseModel extends ServiceResponseModel<AuthDataModel>{
 
 
   factory AuthResponseModel.json(Map<String, dynamic> json){
+
       return AuthResponseModel( /// T 안 적혀 있으면
           code: json['code'],
           /// T 객체고 클래스고 그런게 아니라 타입으로 보니깐, 추론이 뭘 해도 안되네.
@@ -85,7 +86,9 @@ final class AuthResponseModel extends ServiceResponseModel<AuthDataModel>{
   }
 
   factory AuthResponseModel.authCheck(Map<String, dynamic> json){
-    return AuthResponseModel(code: json['code'], body: AuthDataModel.authCheck(json['body']));
+    return AuthResponseModel(
+        code: json['code'],
+        body: AuthDataModel.authCheck(json['body']));
   }
 
 

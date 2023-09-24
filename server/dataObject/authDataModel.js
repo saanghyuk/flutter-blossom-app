@@ -52,6 +52,7 @@ class FirebaseAuthDataModel extends AuthDataModel_Abstract {
   }
 }
 FirebaseAuthDataModel.prototype.json = function({ json }) {
+  console.log("Hello World");
   console.log(json);
   return new FirebaseAuthDataModel(json);
 };

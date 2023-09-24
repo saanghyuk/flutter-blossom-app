@@ -2,7 +2,7 @@ const dummy = {};
 
 class mainController {
   home = (req, res) => {
-    res.json(dummy);
+    // let {// 로그를 위한 데이터를 보통 } = req.body;
   };
 }
 

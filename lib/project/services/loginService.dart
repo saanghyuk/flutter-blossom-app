@@ -20,7 +20,6 @@ final class LoginService implements LoginServiceInterface{
  static const String expiresIn_key = "expiresIn";
  static const String email_key = "email";
  static const String displayName_key = "displayName";
-
  @override
   Future<bool> loginCheck() async {
     // TODO: implement loginCheck
@@ -45,23 +44,14 @@ final class LoginService implements LoginServiceInterface{
      )
    );
 
-   print("Hello");
    /// {code : 200 ~ 400, body: true / false}
-    print(_res.body);
-   final Map<String, dynamic> _result = json.decode(_res.body);
-    final _resModel = AuthResponseModel.authCheck(_result);
-    final _body = _resModel.body as AuthCheckModel;
-    return _body.check;
+  final Map<String, dynamic> _result = json.decode(_res.body);
 
-
-   /// 왠만한 경우는 토큰과 이메일만 보낸다.
-
-
-
-
-
-
-  }
+  /// code, body: AuthCheckModel as AuthDataModel
+  final _resModel = AuthResponseModel.authCheck(_result);
+  final _body = _resModel.body as AuthCheckModel;
+  return _body.check;
+}
 
 
 
@@ -72,7 +62,6 @@ final class LoginService implements LoginServiceInterface{
           AuthSignInModel(email: email, password: base64Encode(pwd.codeUnits)).toMap()
         );
 
-          // print(_body);
           // throw "stop";
 
           /// HttpMouldeResponseModel에는 body & statusCode가 들어있다.
@@ -84,7 +73,7 @@ final class LoginService implements LoginServiceInterface{
 
           final Map<String, dynamic> _result = json.decode(_res.body);
 
-          print(_res.body);
+
           // 오류 확인
           /// code랑 body로 나눠저 가지고 있는다.
           /// body는 AuthResponseModel.json으로 돌려서 FirebaseAuthDataOkModel로 가지고 있게 된다.

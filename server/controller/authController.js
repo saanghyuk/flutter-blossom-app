@@ -10,7 +10,8 @@ class AuthController {
   loginCheck = (req, res) => {
     const { email, idToken } = req.body;
     console.log(`${email} / ${idToken}`);
-    if (authDB[email] === null)
+    if (authDB[email] === undefined)
+      /// 이메일이 없는 경우
       return res.json(
         new AuthResponseDataModel.prototype.authCheck({
           code: 400,
@@ -18,6 +19,7 @@ class AuthController {
         })
       );
     if (authDB[email] !== idToken)
+      /// idToken이 없는 경우
       return res.json(
         AuthResponseDataModel.prototype.authCheck({
           code: 300,
@@ -33,9 +35,8 @@ class AuthController {
   };
 
   login = async (req, res) => {
-    // console.log(req.body);
     let { email, password } = req.body;
-    console.log(email);
+    // console.log(email);
 
     if (email == null || password == null) return res.json("args err");
 
@@ -57,6 +58,8 @@ class AuthController {
       );
 
       let body = await res.json();
+      console.log(body);
+
       /// 에러 처리
       const res_email = body.email;
       const res_idToken = body.idToken;
@@ -69,9 +72,6 @@ class AuthController {
         authType: "Firebase",
         body
       });
-      console.log("==========");
-      console.log(body);
-      console.log("==========");
 
       // const sample = {
       //   code: 200,
