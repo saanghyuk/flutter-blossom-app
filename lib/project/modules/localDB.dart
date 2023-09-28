@@ -15,7 +15,7 @@ final class LocalDB{
       _localDB = LocalDB._();
       _preferences = await SharedPreferences.getInstance();
     }
-    return _localDB!;
+      return _localDB!;
     }
 
 
@@ -42,10 +42,10 @@ final class LocalDB{
 
     Future<Map<String, dynamic>> getDatas(String key) async {
 
-    if(_preferences == null ) throw "생성 필요";
-      /// loginCheck일때 key는 "userData"
-      final String? _userDataString = _preferences!.getString(key);
-      return _userDataString == null ? {} : json.decode(_userDataString);
+      if(_preferences == null ) throw "생성 필요";
+        /// loginCheck일때 key는 "userData"
+        final String? _userDataString = _preferences!.getString(key);
+        return _userDataString == null ? {} : json.decode(_userDataString);
     }
 
     Future<bool> setDatas(String key, Map<String, dynamic> datas) async {

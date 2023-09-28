@@ -8,6 +8,7 @@ const authDB = require("../testDB/authDB");
 
 class AuthController {
   loginCheck = (req, res) => {
+    console.log("얍");
     const { email, idToken } = req.body;
     console.log(`${email} / ${idToken}`);
     if (authDB[email] === undefined)
@@ -61,6 +62,7 @@ class AuthController {
       console.log(body);
 
       /// 에러 처리
+      /// 서버 DB에 저장
       const res_email = body.email;
       const res_idToken = body.idToken;
       authDB[res_email] = res_idToken;

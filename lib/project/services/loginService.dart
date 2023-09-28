@@ -26,8 +26,11 @@ final class LoginService implements LoginServiceInterface{
     await Future.delayed(Duration(seconds: 2));
     final LocalDB _localDB = await LocalDB.instance();
     final bool _loginCheck = _localDB.getBool(_LOGIN_CHECK_KEY) ?? false;
+    // print(_loginCheck);
+
     if(!_loginCheck) return false;
     final Map<String, dynamic> _userData =  await _localDB.getDatas(user_data_key);
+
     if(_userData.isEmpty) return false;
     /// Model parser + @ script로 들어오는 경우 대비
    if(_userData[login_key] == null) return false;
@@ -79,12 +82,16 @@ final class LoginService implements LoginServiceInterface{
           /// body는 AuthResponseModel.json으로 돌려서 FirebaseAuthDataOkModel로 가지고 있게 된다.
           AuthResponseModel model = AuthResponseModel.json(_result);
 
+
           /// FirebaseAuthDataModel 현재 여기에 아무것도 없는데?
           final _firebaseModel = model.body as FirebaseAuthDataModel;
 
+
+          // model.code, model.body
           if(model.code == 200){
               final _okModel = _firebaseModel as FirebaseAuthDataOkModel;
               // final AuthSignInResponseModel _userData = AuthSignInResponseModel.json(json:_result);
+
 
               LocalDB _db = await LocalDB.instance();
               /// 로그인을 정상적으로 성공 했는지

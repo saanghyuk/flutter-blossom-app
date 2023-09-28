@@ -18,5 +18,6 @@ class MainPageDataProvider with ChangeNotifier{
     final HttpModuleResponseModel _res = await HttpModule.post(uri: _uri, headers: {});
     print(_res.body);
     Map<String, dynamic> _body = json.decode(_res.body);
+    print(_body);
   }
 }
