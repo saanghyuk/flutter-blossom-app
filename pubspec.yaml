@@ -41,6 +41,10 @@ dependencies:
   provider:
   http:
   shared_preferences:
+  lanparser:
+    git:
+      url: git@github.com:saanghyuk/lanparser.git
+      ref: main
 
 dev_dependencies:
   flutter_test:

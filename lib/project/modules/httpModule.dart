@@ -22,7 +22,7 @@ final class HttpModule{
 
     static Future<HttpModuleResponseModel> post({
         required String uri,
-        required Map<String, String>? headers,
+        Map<String, String>? headers,
         Object? body
       }) async => HttpModuleResponseModel.http(response: await http.post(
             Uri.parse(uri),

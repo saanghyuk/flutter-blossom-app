@@ -12,9 +12,9 @@ class MainDataModel {
     active,
     a_date
   }) {
-    if (typeof title !== MainDataTitleModel)
+    if (!title instanceof MainDataTitleModel)
       throw "type err - MainDataTitleModel";
-    if (typeof des !== MainDataDesModel) throw "type err - MainDataDesModel";
+    if (!des instanceof MainDataDesModel) throw "type err - MainDataDesModel";
     this.lan = lan;
     this.id = id;
     this.c_date = c_date;
@@ -41,44 +41,6 @@ MainDataModel.prototype.json = json => {
   });
 };
 
-//   code: 200,
-//   // body: {msg : ""} 비정상적일때
-//   body: [ // 정상적일때
-//     {
-//       "lan": "", ///
-//       "id": "",
-//       "c_date" : "",
-//       "title": {
-//         "txt": "",
-//         "image": "",
-//         "image_s": "",
-//         "image_m": "",
-//         "image_x": "",
-//         "image_xl": "",
-//         'subTitle': ""
-//       },
-//       "des": {
-//         type: "",
-//         data: {
-//           "des" : "",
-//           "desImage": ["", ""],
-//           "des_image_s": ["", ""],
-//           "des_image_m": ["", ""],
-//           "des_image_l": ["", ""],
-//           "des_image_xl": ["", ""],
-//         }
-
-//       },
-//       "f_count": 10,
-//       "s_count": 20,
-//       /// 게시글 삭제 여부
-//       "active": true,
-//       "a_date": "",
-//  // 지웠을 때 - 복구하면 빈 값
-//     },
-//   ]
-// }
-
 class MainDataTitleModel {
   constructor({ txt, image, subTitle }) {
     this.txt = txt;
@@ -96,8 +58,9 @@ class MainDataDesModel {
     this.des = des;
     this.type = type; // 단순 텍스트인지, 이미지인지, 영상인지
     if (!Array.isArray(images)) throw "type err Array<String>";
+    console.log(images);
     images.forEach(e => {
-      if (typeof e !== String) throw "type err - ele String";
+      if (typeof e !== "string") throw "type err - ele String";
     });
     // + validation e - https://
     this.image = images;

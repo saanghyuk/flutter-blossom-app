@@ -15,7 +15,7 @@ class DataModel_Abstract {
 DataModel_Abstract.prototype.mainData = (code, json) => {
   return new DataModel_Abstract({
     code,
-    body: MainDataModel.prototype.json(json)
+    body: json.map(e => MainDataModel.prototype.json(e))
   });
 };
 
