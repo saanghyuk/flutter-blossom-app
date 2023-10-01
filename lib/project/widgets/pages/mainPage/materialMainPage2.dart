@@ -1,5 +1,6 @@
 import 'package:blossom/project/anim/projectPageRoute.dart';
 import 'package:blossom/project/widgets/views/mainView/mainView.dart';
+import 'package:blossom/project/widgets/views/searchView/searchView.dart';
 import 'package:flutter/material.dart';
 
 class MaterialMainPage2 extends StatefulWidget {
@@ -28,8 +29,8 @@ class MaterialMainPage2 extends StatefulWidget {
 
 class _MaterialMainPage2State extends State<MaterialMainPage2>{
 
-  final PageController _pageController = PageController();
-  int _pageIndex = 0;
+  final PageController _pageController = PageController(initialPage: 1);
+  int _pageIndex = 1;
 
   @override
   void dispose() {
@@ -56,6 +57,8 @@ class _MaterialMainPage2State extends State<MaterialMainPage2>{
                 inputWidget: this.widget.inputWidget,
                 feedCardListScrollController: this.widget.feedCardListScrollController,
                 feedCard: this.widget._feedCard!,),
+
+          SearchView(),
           Container(),
         ],
       ),

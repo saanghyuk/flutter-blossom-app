@@ -1,27 +1,26 @@
 import 'dart:convert';
+import 'package:blossom/project/models/mainDataObject/mainDataModel.dart';
 import 'package:blossom/project/models/responseModel/resModel.dart';
 import 'package:blossom/project/providers/loginPageProvider.dart';
+import 'package:blossom/project/services/mainService.dart';
 import 'package:flutter/foundation.dart';
 import '../modules/httpModule.dart';
 
 
-class MainPageDataProvider with ChangeNotifier{
+class MainPageDataProvider with ChangeNotifier {
   LoginPageProvider loginPageProvider;
+  final MainService _mainService = MainService();
   MainPageDataProvider({required this.loginPageProvider}){
     Future.microtask(this._init);
   }
 
+  MainDataWrapModel? _data;
+  MainDataWrapModel? get data => this._data;
+
   Future<void> _init() async {
     if(!loginPageProvider.loginState) return;
-    /// @TODO login여부를 확인해서 실행
-    final String _uri = "http://192.168.45.171:3000/main";
-    /// body & statusCode
-    final HttpModuleResponseModel _res = await HttpModule.post(uri: _uri);
-    final Map<String, dynamic> _body = json.decode(_res.body);
-    print(_body);
-    ResModel.MainDataModel(_body)
-
-
+    this.fetch();
+    notifyListeners();
 
     /// 1 MainModel이 나올 거라고 확정을 지어 놓은 것.
      /// ResModel.MainModel(body)의 body 를 빼서 as MainPageResponseModel
@@ -34,5 +33,15 @@ class MainPageDataProvider with ChangeNotifier{
     /// 3
     ///  ResModel.json(_body);
     /// 의 body 를 빼서 as MainPageResponseModel
+  }
+  void clear(){
+    this._data= null;
+    this.notifyListeners();
+  }
+
+  Future<void> fetch() async {
+    final ResModel _data = await this._mainService.fetch();
+    this._data = _data.body as MainDataWrapModel;
+    this.notifyListeners();
   }
 }

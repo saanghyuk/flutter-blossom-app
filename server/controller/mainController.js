@@ -9,7 +9,7 @@ const { DataModel_Abstract } = require("../dataObject/dataModel");
 
 const dummy = [
   {
-    len: "ko",
+    lan: "KO",
     id: "uid-0",
     c_date: "2023-09-28",
     title: {
@@ -36,6 +36,7 @@ class MainController {
   home = (req, res) => {
     // let {// 로그를 위한 데이터를 보통 } = req.body;
     const data = DataModel_Abstract.prototype.mainData(200, dummy);
+    // print(data);
     res.json(data);
   };
 }

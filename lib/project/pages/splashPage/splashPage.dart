@@ -41,6 +41,7 @@ class _SplashPageState extends State<SplashPage> {
         await _provider.loginCheck(
             onDone: () async {
               /// 서버로 두번 간다.
+              /// 여기서 첫번째 loginCheck
               final bool _changeResult = await _loginProvider.loginStateChange();
               if(!_changeResult){
                 /// 서버는 정상인데 로컬이 문제

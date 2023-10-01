@@ -58,12 +58,12 @@ class MainDataDesModel {
     this.des = des;
     this.type = type; // 단순 텍스트인지, 이미지인지, 영상인지
     if (!Array.isArray(images)) throw "type err Array<String>";
-    console.log(images);
+    // console.log(images);
     images.forEach(e => {
       if (typeof e !== "string") throw "type err - ele String";
     });
     // + validation e - https://
-    this.image = images;
+    this.images = images;
   }
 }
 

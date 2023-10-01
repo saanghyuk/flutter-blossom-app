@@ -2,17 +2,29 @@ import 'package:blossom/project/models/responseModel/resBodyModel.dart';
 import 'package:blossom/project/modules/LanParserModule.dart';
 
 
+final class MainDataWrapModel implements ResBodyModel{
+  final List<MainDataModel> data;
+  const MainDataWrapModel({required this.data});
+  factory MainDataWrapModel.json(List json){
+    return MainDataWrapModel(
+        data: json.map<MainDataModel>(
+                (e) => MainDataModel.json(e)
+        ).toList()
+    );
+  }
+}
+
 /// 클래스 쓸 때 왠만하면 다 final을 붙이는게 좋다.
 /// 클래스 extends가 안되게
-final class MainDataModel implements ResBodyModel{
+final class MainDataModel{
   final Lan lan; /// @
   final String id;
   final String c_date;
   final MainDataTitleModel title;
   final MainDataDesModel des;
-  final String f_count;
-  final String s_count;
-  final String active;
+  final int f_count;
+  final int s_count;
+  final bool active;
   final String a_date;
   const MainDataModel({
     required this.lan,
@@ -26,6 +38,7 @@ final class MainDataModel implements ResBodyModel{
     required this.a_date
   });
   factory MainDataModel.json(Map<String, dynamic> body){
+    print(body);
     return MainDataModel(
         lan: LanParserModule.stringToLen(body["lan"]),
         id: body['id'],
@@ -53,24 +66,23 @@ final class MainDataTitleModel{
 }
 
 enum DesType{
-  Txt,
-  Image,
-  Video,
-  TnI,
-  TnV,
-  Err
+    Txt,
+    Image,
+    Video,
+    TnI,
+    TnV,
+    Err
 }
 
-final class MainDataDesParser{
-  static DesType parser(String type){
-  if(type =="Txt" || type == "txt") return DesType.Txt;
-  if(type =="video") return DesType.Video;
-  if(type =="image") return DesType.Image;
-  if(type.toUpperCase() == "TNV") return DesType.TnV;
-  if(type.toLowerCase() == "tni") return DesType.TnI;
-  return DesType.Err;
-  }
-
+final class MainDataDesParser {
+    static DesType parser(String type){
+      if(type =="Txt" || type == "txt") return DesType.Txt;
+      if(type =="video") return DesType.Video;
+      if(type =="image") return DesType.Image;
+      if(type.toUpperCase() == "TNV") return DesType.TnV;
+      if(type.toLowerCase() == "tni") return DesType.TnI;
+        return DesType.Err;
+    }
 }
 
 
@@ -85,10 +97,10 @@ final class MainDataDesModel{
   factory MainDataDesModel.json(Map<String, dynamic> body){
     return MainDataDesModel(
         des: body['des'],
-        images: body['images'],
+        images: List<String>.from(body['images']),
         type: MainDataDesParser.parser(body['type'])
     );
-
+  }
 }
 
 
