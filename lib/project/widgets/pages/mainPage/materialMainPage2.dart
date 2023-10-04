@@ -17,7 +17,8 @@ class MaterialMainPage2 extends StatefulWidget {
     super.key,
     required this.inputWidget,
     required Widget Function(BuildContext context, int index) feedCardBuilder,
-    required int feedCardItemCount, required this.feedCardListScrollController}):
+    required int feedCardItemCount,
+    required this.feedCardListScrollController}):
         _isBuilder = true,
         _feedCardBuilder = feedCardBuilder,
         _feedCardItemCount = feedCardItemCount,

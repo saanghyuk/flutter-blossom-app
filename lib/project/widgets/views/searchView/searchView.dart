@@ -1,3 +1,4 @@
+import 'package:blossom/project/widgets/pages/searchPage/searchPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -20,7 +21,7 @@ class _SearchViewState extends State<SearchView> with AutomaticKeepAliveClientMi
             child: TextField(
               readOnly: true,
               onTap: (){
-
+                Navigator.of(context).pushNamed(SearchPage.path);
               },
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -44,7 +45,9 @@ class _SearchViewState extends State<SearchView> with AutomaticKeepAliveClientMi
                   textColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                  onPressed: () {  },
+                  onPressed: () {
+
+                  },
               child: Text(e))).toList(),
             ),
           ),
