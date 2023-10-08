@@ -5,5 +5,4 @@ final class QsModel{
 
     QsModel.json({required Map<String, dynamic> json}):
         q=json['q']?.toString();
-
 }

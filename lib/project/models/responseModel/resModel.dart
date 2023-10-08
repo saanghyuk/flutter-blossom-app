@@ -11,6 +11,11 @@ final class ResModel{
   ResModel.MainDataModel(Map<String, dynamic> json)
       :code = json['code'],
        body = ResBodyModel.MainDataModel(json['body']);
+
+  ResModel.SearchDataModel(Map<String, dynamic> json)
+      :code = json['code'],
+        body = ResBodyModel.SearchModel(json['body']);
+
 }
 
 

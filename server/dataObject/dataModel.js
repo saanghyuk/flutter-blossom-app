@@ -1,4 +1,5 @@
 const { MainDataModel } = require("./mainDataModel");
+const { SearchDataModel } = require("./searchDataModel");
 
 /// @ 문서로 ... 작성 필요 ...
 class DataModel_Abstract {
@@ -16,6 +17,13 @@ DataModel_Abstract.prototype.mainData = (code, json) => {
   return new DataModel_Abstract({
     code,
     body: json.map(e => MainDataModel.prototype.json(e))
+  });
+};
+
+DataModel_Abstract.prototype.searchData = (code, json) => {
+  return new DataModel_Abstract({
+    code,
+    body: json.map(e => SearchDataModel.prototype.json(e))
   });
 };
 

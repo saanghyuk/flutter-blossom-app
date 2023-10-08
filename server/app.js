@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 const mainRouter = require("./router/mainRouter.js");
 const authRouter = require("./router/authRouter.js");
-
+const searchRouter = require("./router/searchRouter.js");
 // 기본은 form-data 형태로 간다.
 app.use(express.json()); /// application/json
 
@@ -24,6 +24,7 @@ app.get("/purchase-complete", (req, res) => {
 
 app.use("/main", mainRouter);
 app.use("/auth", authRouter);
+app.use("/search", searchRouter);
 
 // 서버보내는 모든 요청 다 받는 것
 // 위에서 매칭이 안됬을 때 받는 것.
