@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:blossom/project/components/pages/splash/cupertinoSplashPageComponent.dart';
 import 'package:blossom/project/components/pages/splash/materialSplashPageComponent.dart';
@@ -65,7 +65,7 @@ class _SplashPageState extends State<SplashPage> {
   
   @override
   Widget build(BuildContext context) {
-    if(Platform.isIOS) return CupertinoSplashPageComponent();
+    // if(Platform.isIOS) return CupertinoSplashPageComponent();
     return MaterialSplashPageComponent();
   }
 }

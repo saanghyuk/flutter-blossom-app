@@ -8,7 +8,7 @@ class SearchService{
   Future<SearchWrapModel> search(String query) async {
     final HttpModuleResponseModel _res = await HttpModule.post(
         uri: "http://192.168.45.171:3000/search",
-        body: SearchReqModel(searchQuery: "Flutter").encode(),
+        body: SearchReqModel(searchQuery: query).encode(),
         headers : {"content-type": "application/json"});
 
     final Map<String, dynamic> _resBody = json.decode(_res.body);

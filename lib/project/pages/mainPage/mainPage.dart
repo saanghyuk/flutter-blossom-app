@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:blossom/project/components/pages/main/cupertinoMainPageComponent.dart';
 import 'package:blossom/project/components/pages/main/materialMainPageComponent.dart';
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(Platform.isIOS) return CupertinoMainPageComponent();
+    // if(Platform.isIOS) return CupertinoMainPageComponent();
     return MaterialMainPageComponent(
         scrollController : this._scrollController
     );

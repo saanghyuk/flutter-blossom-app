@@ -11,6 +11,7 @@ class SearchPage extends StatefulWidget {
   );
 
   const SearchPage({super.key});
+  static searchPath(String query) => SearchPage.path+"?q=$query}";
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -18,7 +19,8 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   SearchProvider? _searchProvider;
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -31,8 +33,20 @@ class _SearchPageState extends State<SearchPage> {
   void dispose() {
     // TODO: implement dispose
     this._textEditingController.dispose();
+    this._focusNode.dispose();
     super.dispose();
   }
+
+  Future _onSearch() async {
+    print("Enter");
+    _focusNode.unfocus();
+    await this._searchProvider?.search(this._textEditingController.text);
+    Navigator.of(context).pushNamed(
+        SearchPage.searchPath(this._textEditingController.text)
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +60,17 @@ class _SearchPageState extends State<SearchPage> {
                 child: Row(
                   children: [
                     Expanded(child: TextField(
+                      focusNode: this._focusNode,
                       controller: this._textEditingController,
                       decoration:  InputDecoration(hintText: "검색"),
+                      onEditingComplete: this._onSearch,
                     )),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+                    IconButton(onPressed: this._onSearch, icon: Icon(Icons.search)),
                   ],
                 )
             ),
             this._searchProvider!.model.q == null
-                ? Expanded(child: Center(child: Text("...")))
+                ? Expanded(child: Center(child: Text("...BLANK")))
                 : Expanded(
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -6,9 +6,6 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <lanparser/lanparser_plugin_c_api.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  LanparserPluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("LanparserPluginCApi"));
 }

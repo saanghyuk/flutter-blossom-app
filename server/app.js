@@ -6,6 +6,9 @@ const port = process.env.PORT || 3000;
 const mainRouter = require("./router/mainRouter.js");
 const authRouter = require("./router/authRouter.js");
 const searchRouter = require("./router/searchRouter.js");
+const cors = require("cors");
+
+app.use(cors());
 // 기본은 form-data 형태로 간다.
 app.use(express.json()); /// application/json
 

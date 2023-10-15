@@ -15,6 +15,4 @@ class SearchService_Singleton{
     }
     return _service!;
   }
-
-
 }

@@ -8,12 +8,10 @@ abstract class ResBodyModel{
   factory ResBodyModel.MainDataModel(List body){
     // return MainDataModel.json(body);
     return MainDataWrapModel.json(body);
-  }
+}
 
   factory ResBodyModel.SearchModel(List body){
     // return MainDataModel.json(body);
     return SearchWrapModel.json(body);
   }
-
-
 }

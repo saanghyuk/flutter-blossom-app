@@ -25,6 +25,7 @@ final class SearchProvider with ChangeNotifier{
   /// 받은 걸로 !
   final QsModel model;
   final SearchService _searchService = SearchService_Singleton.getInstance();
+
   SearchProvider({required this.model}){
     print("Search");
     Future.microtask(_init);
@@ -33,7 +34,13 @@ final class SearchProvider with ChangeNotifier{
   Future _init() async {
     // this.model
     if(this.model.q == null) return;
-    await _searchService.search("query");
+    await this.search(this.model.q!);
   }
 
+  Future search(String query) async {
+    this.state = await _searchService.search(query);
+    this.notifyListeners();
+  }
+
+  SearchWrapModel? state;
 }
