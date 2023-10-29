@@ -6,7 +6,8 @@ import 'dart:io';
 import 'package:blossom/project/components/pages/main/cupertinoMainPageComponent.dart';
 import 'package:blossom/project/components/pages/main/materialMainPageComponent.dart';
 import 'package:blossom/project/providers/mainPageDataProvider.dart';
-import 'package:blossom/project/providers/mainPageProvider.dart';
+import 'package:blos'
+    'som/project/providers/mainPageProvider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
