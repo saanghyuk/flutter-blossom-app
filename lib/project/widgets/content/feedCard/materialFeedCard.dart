@@ -2,15 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-enum FeedCardOnTapType{
-  User,
-  Menu,
-  Like1,
-  Share1,
-  Like2,
-  Share2,
-  ContentImage,
-}
+import 'feedCardOnTapTypeEnum.dart';
+
 
 
 class MaterialFeedCard extends StatelessWidget {

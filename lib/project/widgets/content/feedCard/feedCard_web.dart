@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:blossom/project/widgets/content/feedCard/cupertinoFeedCard.dart';
-import 'package:blossom/project/widgets/content/feedCard/materialFeedCard.dart';
 import 'package:flutter/widgets.dart';
 
 import 'feedCardOnTapTypeEnum.dart';
+import 'materialFeedCard.dart';
+
+
 
 class FeedCard extends StatelessWidget {
   final String title;
@@ -30,19 +30,17 @@ class FeedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 언제나 모바일만 가능하다.
-    if(Platform.isAndroid) return MaterialFeedCard(
-        title: this.title,
-        subTitle: this.subTitle,
-        circleImage: this.circleImage,
-        des: this.des,
-        image: this.image,
-        isCheck: this.isCheck,
-        likeCount: this.likeCount,
-        shareCount: this.shareCount,
-        onTap: this.onTap,
-
-          // switch
-        );
-    return CupertinoFeedCard();
+    return MaterialFeedCard(
+      title: this.title,
+      subTitle: this.subTitle,
+      circleImage: this.circleImage,
+      des: this.des,
+      image: this.image,
+      isCheck: this.isCheck,
+      likeCount: this.likeCount,
+      shareCount: this.shareCount,
+      onTap: this.onTap,
+      // switch
+    );
   }
 }

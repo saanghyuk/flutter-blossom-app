@@ -1,6 +1,7 @@
 import 'package:blossom/project/models/routerObject/qsModel.dart';
 import 'package:blossom/project/pages/loginPage/loginPage.dart';
-import 'package:blossom/project/pages/mainpage/mainPage.dart';
+// import 'package:blossom/project/pages/mainpage/mainPage.dart';
+import '../pages/mainPage/mainPage_exports.dart';
 import 'package:blossom/project/pages/splashpage/splashPage.dart';
 import 'package:blossom/project/providers/searchProvider.dart';
 import 'package:blossom/project/widgets/pages/searchPage/searchPage.dart';

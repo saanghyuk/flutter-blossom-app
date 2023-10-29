@@ -1,4 +1,5 @@
-import 'package:blossom/project/pages/mainpage/mainPage.dart';
+// import 'package:blossom/project/pages/mainpage/mainPage.dart';
+import '../pages/mainPage/mainPage_exports.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../pages/splashpage/splashPage.dart';

@@ -6,7 +6,7 @@ import 'package:blossom/project/models/searchDataObject/searchModel.dart';
 import 'package:blossom/project/services/searchService_Singleton.dart';
 import 'package:flutter/widgets.dart';
 
-import '../modules/httpModule.dart';
+import '../modules/httpModule/httpModule.dart';
 import '../services/searchService.dart';
 
 /// 전역 프로바이더
@@ -38,6 +38,7 @@ final class SearchProvider with ChangeNotifier{
   }
 
   Future search(String query) async {
+    // SearchWrapModel을 return 그 안에는 searchModel들이 쭉 있다.
     this.state = await _searchService.search(query);
     this.notifyListeners();
   }

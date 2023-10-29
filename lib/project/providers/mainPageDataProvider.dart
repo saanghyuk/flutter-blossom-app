@@ -4,7 +4,7 @@ import 'package:blossom/project/models/responseModel/resModel.dart';
 import 'package:blossom/project/providers/loginPageProvider.dart';
 import 'package:blossom/project/services/mainService.dart';
 import 'package:flutter/foundation.dart';
-import '../modules/httpModule.dart';
+import '../modules/httpModule/httpModule.dart';
 
 
 class MainPageDataProvider with ChangeNotifier {

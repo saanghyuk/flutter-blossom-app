@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:blossom/project/models/authDataObject/authResponseModel.dart';
-import 'package:blossom/project/modules/httpModule.dart';
+import 'package:blossom/project/modules/httpModule/httpModule.dart';
 import 'package:blossom/project/modules/localDB.dart';
 
 import '../models/authDataObject/authModel.dart';

@@ -1,4 +1,5 @@
 import 'package:blossom/project/models/routerObject/qsModel.dart';
+import 'package:blossom/project/models/searchDataObject/searchModel.dart';
 import 'package:blossom/project/providers/searchProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,7 @@ class SearchPage extends StatefulWidget {
   );
 
   const SearchPage({super.key});
-  static searchPath(String query) => SearchPage.path+"?q=$query}";
+  static searchPath(String query) => SearchPage.path+"?q=$query";
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -71,16 +72,32 @@ class _SearchPageState extends State<SearchPage> {
             ),
             this._searchProvider!.model.q == null
                 ? Expanded(child: Center(child: Text("...BLANK")))
-                : Expanded(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 10.0
+                :
+            Expanded(
+                child: this._searchProvider!.state == null ?
+                Center(child: CircularProgressIndicator())
+                    : GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10.0,
+                      crossAxisSpacing: 10.0
                   ),
                   padding: EdgeInsets.all(20.0),
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) => Container(color: Colors.blue),
+                  itemCount: this._searchProvider!.state!.searchModels.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final SearchModel _searchModel = this._searchProvider!.state!.searchModels[index];
+                    return GridTile(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(_searchModel.imgSrc)
+                          )
+                        ),
+                      ),
+                    footer: Text(_searchModel.title),
+                  );
+                  },
                 ))
           ],
         ),

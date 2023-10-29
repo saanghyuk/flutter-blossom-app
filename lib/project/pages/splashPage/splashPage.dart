@@ -3,12 +3,14 @@
 import 'package:blossom/project/components/pages/splash/cupertinoSplashPageComponent.dart';
 import 'package:blossom/project/components/pages/splash/materialSplashPageComponent.dart';
 import 'package:blossom/project/pages/loginPage/loginPage.dart';
-import 'package:blossom/project/pages/mainPage/mainPage.dart';
+// import 'package:blossom/project/pages/mainPage/mainPage.dart';
 import 'package:blossom/project/providers/loginPageProvider.dart';
 import 'package:blossom/project/providers/splashPageProvider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../mainPage/mainPage_exports.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

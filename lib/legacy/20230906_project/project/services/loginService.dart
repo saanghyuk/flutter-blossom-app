@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:blossom/project/models/authDataObject/autoModel.dart';
-import 'package:blossom/project/modules/httpModule.dart';
+import 'package:blossom/project/modules/httpModule/httpModule.dart';
 import 'package:blossom/project/modules/localDB.dart';
 
 abstract interface class LoginServiceInterface{

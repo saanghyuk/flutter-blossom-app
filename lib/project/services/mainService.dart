@@ -4,7 +4,7 @@
 import 'dart:convert';
 
 import 'package:blossom/project/models/responseModel/resModel.dart';
-import 'package:blossom/project/modules/httpModule.dart';
+import 'package:blossom/project/modules/httpModule/httpModule.dart';
 
 final class MainService{
   Future<ResModel> fetch() async {

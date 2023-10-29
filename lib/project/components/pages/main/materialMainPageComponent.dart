@@ -2,15 +2,17 @@
 import 'package:blossom/project/components/widgets/feedInputComponent.dart';
 import 'package:blossom/project/models/mainDataObject/mainDataModel.dart';
 import 'package:blossom/project/providers/mainPageDataProvider.dart';
-import 'package:blossom/project/widgets/content/feedCard/feedCard.dart';
-import 'package:blossom/project/widgets/content/feedCard/materialFeedCard.dart';
+// import 'package:blossom/project/widgets/content/feedCard/feedCard.dart';
+// import 'package:blossom/project/widgets/content/feedCard/materialFeedCard.dart';
 import 'package:blossom/project/widgets/content/feedInput/materialFeedInput.dart';
+
 
 /// 2로 교체
 // import 'package:blossom/project/widgets/pages/mainPage/materialMainPage.dart';
 import 'package:blossom/project/widgets/pages/mainPage/materialMainPage2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../widgets/content/feedCard/feedCard_exports.dart';
 // import 'package:flutter/widgets.dart';
 
 class MaterialMainPageComponent extends StatelessWidget {

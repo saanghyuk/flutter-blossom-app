@@ -3,7 +3,10 @@ import 'package:blossom/project/widgets/pages/loginPage/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../pages/mainPage/mainPage.dart';
+import '../../../pages/mainPage/mainPage_exports.dart';
+
+// import '../../../pages/mainPage/mainPage.dart';
+
 
 class LoginPageComponent extends StatelessWidget {
   const LoginPageComponent({Key? key}) : super(key: key);

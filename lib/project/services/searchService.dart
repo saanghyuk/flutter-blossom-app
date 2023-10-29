@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import '../models/responseModel/resModel.dart';
 import '../models/searchDataObject/searchModel.dart';
-import '../modules/httpModule.dart';
+import '../modules/httpModule/httpModule.dart';
 
 class SearchService{
   Future<SearchWrapModel> search(String query) async {

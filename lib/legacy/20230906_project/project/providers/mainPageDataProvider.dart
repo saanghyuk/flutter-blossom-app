@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:blossom/project/modules/httpModule.dart';
+import 'package:blossom/project/modules/httpModule/httpModule.dart';
 import 'package:flutter/foundation.dart';
 
 
