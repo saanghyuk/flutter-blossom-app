@@ -1,0 +1,8 @@
+POST https://rest.iad-03.braze.com/users/export/ids
+Content-Type: application/json
+Authorization: 7d31d48a-5d78-4a17-8a3b-9544d36194b9
+
+{
+  "external_ids": ["5D25BC5D-0827-4C51-9AA2-1939B18D496F"], 
+  "fields_to_export" : ["external_id", "braze_id"]
+}

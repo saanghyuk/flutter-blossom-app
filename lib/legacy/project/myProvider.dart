@@ -1,5 +1,5 @@
 
-import 'package:blossom/project/myRoute.dart';
+import 'package:blossom/project/projectRoute/myRoute.dart';
 import 'package:blossom/project/providers/mainPageProvider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';

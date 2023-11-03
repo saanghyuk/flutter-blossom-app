@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:blossom/project/env.dart';
 import 'package:blossom/project/models/authDataObject/authResponseModel.dart';
-import 'package:blossom/project/modules/httpModule/httpModule.dart';
+import 'package:blossom/project/modules/httpModule/httpModule_exports.dart';
+import 'package:blossom/project/modules/httpModule/httpModule_interface.dart';
 import 'package:blossom/project/modules/localDB.dart';
 
 import '../models/authDataObject/authModel.dart';
@@ -39,8 +41,8 @@ final class LoginService implements LoginServiceInterface{
     if(_userData[expiresIn_key] == null) return false;
     if(_userData[email_key] == null) return false;
     if(_userData[displayName_key] == null) return false;
-    final _res = await await HttpModule.post(
-       uri: "http://192.168.45.171:3000/auth/check",
+    final _res = await await HttpModule.instance.post(
+       uri: "${ServiceEnv.endPoint}/auth/check",
        headers: {"content-type": "application/json"},
        body: json.encode(
            AuthSignInCheckModel(email: _userData[email_key].toString(), idToken: _userData[token_key].toString()).toMap()
@@ -68,8 +70,9 @@ final class LoginService implements LoginServiceInterface{
           // throw "stop";
 
           /// HttpMouldeResponseModel에는 body & statusCode가 들어있다.
-          final HttpModuleResponseModel _res = await HttpModule.post(
-                uri: "http://192.168.45.171:3000/auth",
+
+          final HttpModuleResponseModelInterface _res = await HttpModule.instance.post(
+                uri: "${ServiceEnv.endPoint}/auth",
                 headers: {"content-type": "application/json"},
                 body: _body
           );

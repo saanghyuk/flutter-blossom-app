@@ -1,5 +1,10 @@
 
 import 'package:blossom/project/modules/httpModule/httpModule_interface.dart';
+import 'package:http/http.dart' as http;
+
+class HttpModuleCommon{
+
+}
 
 
 // 코드를 적을 떄 내보내는 것은 wrap
@@ -10,19 +15,24 @@ final class HttpModule extends HttpModuleInterface{
 
 
   @override
-  Future<HttpModuleResponseModelInterface> get({required String uri, required Map<String, String>? headers}) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<HttpModuleResponseModelInterface> get({required String uri, required Map<String, String>? headers})  async {
+    return HttpModuleResponseModel.http(
+        res: await http.get(
+            Uri.parse(uri),
+            headers:headers
+        ));
   }
 
   @override
-  Future<HttpModuleResponseModelInterface> post({required String uri, Map<String, String>? headers, Object? body}) {
+  Future<HttpModuleResponseModelInterface> post({required String uri, Map<String, String>? headers, Object? body})  async {
     // TODO: implement post
-    throw UnimplementedError();
+    return HttpModuleResponseModel.http(
+        res: await http.post(
+            Uri.parse(uri),
+            headers:headers,
+            body: body
+        ));
   }
-
-
-
 }
 
 final class HttpModuleResponseModel extends HttpModuleResponseModelInterface{
@@ -35,10 +45,10 @@ final class HttpModuleResponseModel extends HttpModuleResponseModelInterface{
 
   @override
   // TODO: implement body
-  String get body => throw UnimplementedError();
+  String get body => super.body;
 
   @override
   // TODO: implement statusCode
-  int get statusCode => throw UnimplementedError();
+  int get statusCode => super.statusCode;
 /// ab, interface 등으로 생성자 이름이 강제가 안됨 -> 작성 규칙을 만듦
 }

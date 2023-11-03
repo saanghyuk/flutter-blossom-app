@@ -34,9 +34,7 @@ class ProjectMaterialRoute extends StatelessWidget {
               settings: RouteSettings(name: route.name),
               builder: (_) => SearchPage.builder(_model),
           );
-
         }
-
 
         if(route.name == LoginPage.path) return MaterialPageRoute(
             builder: LoginPage.builder,
