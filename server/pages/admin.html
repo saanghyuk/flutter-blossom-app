@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <input id="urlInput" type="text" />
+  <div id="urlBtn" class="btn">BTN</div>
+  <script>
+    const input = document.getElementById("urlInput");
+    const btn = document.getElementById("urlBtn");
+    btn.onclick = _ => {
+      console.log(input.value);
+      fetch(`/imgSrc?input=${input.value}`)
+        .then(e => console.log(e))
+        .catch(err => console.log(err));
+    }
+  </script>
+
+</body>
+
+</html>

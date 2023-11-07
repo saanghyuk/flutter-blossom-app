@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class LoginPageWidget extends StatefulWidget {
   final FutureOr<void> Function(String email, String pwd) onLogin;
+  final String imgSrc;
   final String errMsg;
-  const LoginPageWidget({Key? key, required this.onLogin, required this.errMsg}) : super(key: key);
+  const LoginPageWidget({Key? key, required this.onLogin, required this.errMsg, required this.imgSrc}) : super(key: key);
 
   @override
   State<LoginPageWidget> createState() => _LoginPageWidgetState();
@@ -45,7 +46,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   AspectRatio(
                     aspectRatio: 16/9,
                     child: Container(
-                        color: Colors.red
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image : NetworkImage(this.widget.imgSrc),
+                          )
+                        ),
                     ),
                   ),
                   Text("plz..."),

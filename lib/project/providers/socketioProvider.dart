@@ -1,3 +1,4 @@
+import 'package:blossom/project/env.dart';
 import 'package:flutter/foundation.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -8,7 +9,7 @@ class SocketIoProvider with ChangeNotifier{
   }
   void _init(){
     IO.Socket socket = IO.io(
-        "ws://192.168.45.171:3001",
+        ServiceEnv.wsEndPoint,
         IO.OptionBuilder()
           .setTransports(['websocket'])
           .build()

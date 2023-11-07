@@ -14,7 +14,7 @@ class LoginPageComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginPageProvider _loginProvider = context.read<LoginPageProvider>();
+    LoginPageProvider _loginProvider = context.watch<LoginPageProvider>();
 
 
     /// ... 의미 찾아보기 : 숙제 해보기
@@ -27,10 +27,13 @@ class LoginPageComponent extends StatelessWidget {
 
 
     return LoginPageWidget(
+        imgSrc: _loginProvider.imgSrc,
         onLogin: (String email, String pwd) {
           _loginProvider.login(
               email: email, pwd: pwd,
               onLogin: () async {
+                  /// @TODO 다시 로그인 페이지 접근시 연결 해야함. 그래서 라이프사이클로 쓰는게 낫다
+                  _loginProvider.socketClose();
                   await Navigator.of(context).pushReplacementNamed(MainPage.path);
               },
               onErr: () async {

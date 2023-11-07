@@ -1,11 +1,17 @@
 import 'dart:async';
+import 'package:blossom/project/env.dart';
 import 'package:flutter/foundation.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../services/loginService.dart';
 
 
 /// @TODO 자동로그인
 final class LoginPageProvider with ChangeNotifier{
   final LoginServiceInterface _loginService = LoginService();
+
+  LoginPageProvider(){
+    _socketInit();
+  }
 
 
   bool _loginState = false;
@@ -44,4 +50,32 @@ final class LoginPageProvider with ChangeNotifier{
             this.errMsg = "";
         }
     }
+
+    String? _imgSrc;
+    String get imgSrc => this._imgSrc ?? "";
+    IO.Socket? _socket;
+
+    void _socketInit(){
+      this._socket = IO.io(
+          ServiceEnv.wsEndPoint,
+          IO.OptionBuilder()
+              .setTransports(['websocket'])
+              .build()
+        )
+      // 연결 됬을 때 호출될 이벤트
+        ..onConnect((_) {
+          print('Login Socket Connect');
+        })
+        ..on("loginImgSrc", (data){
+          this._imgSrc = data;
+          this.notifyListeners();
+        })
+      // 연결 할 것
+        ..connect();
+    }
+
+    void socketClose(){
+      this._socket?.close();
+    }
+
 }
