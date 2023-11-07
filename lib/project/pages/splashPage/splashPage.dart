@@ -5,6 +5,7 @@ import 'package:blossom/project/components/pages/splash/materialSplashPageCompon
 import 'package:blossom/project/pages/loginPage/loginPage.dart';
 // import 'package:blossom/project/pages/mainPage/mainPage.dart';
 import 'package:blossom/project/providers/loginPageProvider.dart';
+import 'package:blossom/project/providers/socketioProvider.dart';
 import 'package:blossom/project/providers/splashPageProvider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,8 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+
       /// 어차피 build가 다 된 상태라 전역 context를 불러도 된다.
       Future(() async {
         /// TODO:
@@ -39,6 +42,7 @@ class _SplashPageState extends State<SplashPage> {
         await Future.delayed(Duration(seconds: 2));
         final _provider = context.read<SplashPageProvider>();
         final _loginProvider = context.read<LoginPageProvider>();
+        SocketIoProvider io = context.read<SocketIoProvider>();
 
         await _provider.loginCheck(
             onDone: () async {
