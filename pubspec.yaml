@@ -38,6 +38,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   airbridge_flutter_sdk: 3.4.1
   socket_io_client: 2.0.3+1
+  flutter_riverpod:
   cupertino_icons: ^1.0.2
   provider:
   http:
