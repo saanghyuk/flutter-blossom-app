@@ -32,7 +32,7 @@ class SamplePage extends ConsumerWidget {
         ],
       ),
       body: Center(
-        child: Text(state.value.toString(), style: TextStyle(fontSize: 60.0))
+          child: Text(p_state.pValue.toString(), style: TextStyle(fontSize: 60.0))
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -41,6 +41,4 @@ class SamplePage extends ConsumerWidget {
     );
   }
 }
-
-
 
